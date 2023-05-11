@@ -1,3 +1,5 @@
+// ignore_for_file: no_logic_in_create_state
+
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -5,14 +7,14 @@ import 'package:project_manager/shared/component/constant.dart';
 
 import '../../shared/component/component.dart';
 
-class AllRequestPage extends StatefulWidget {
-  const AllRequestPage({super.key});
+class AllRequestPageDoc extends StatefulWidget {
+  const AllRequestPageDoc({super.key});
 
   @override
-  State<AllRequestPage> createState() => _AllRequestPageState();
+  State<AllRequestPageDoc> createState() => _AllRequestPageDocState();
 }
 
-class _AllRequestPageState extends State<AllRequestPage> {
+class _AllRequestPageDocState extends State<AllRequestPageDoc> {
   bool allrequest = true;
   bool pending = false;
   bool approved = false;
@@ -25,6 +27,21 @@ class _AllRequestPageState extends State<AllRequestPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: mainColor,
+      appBar: AppBar(
+        backgroundColor: const Color(0xff01b397),
+        title: const Center(
+          child: Text(
+            'All Request Page',
+          ),
+        ),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_rounded),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          color: Colors.white,
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Center(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:project_manager/modules/all_request_pages_doc/all_request_page_doc.dart';
 import 'package:project_manager/shared/component/component.dart';
 
 import '../../shared/component/constant.dart';
@@ -85,7 +86,9 @@ class _HomePageDocState extends State<HomePageDoc> {
               child: defualtButton(
                 text: 'Request Information',
                 isUpperCase: false,
-                function: () {},
+                function: () {
+                  navigateTo(context, const AllRequestPageDoc());
+                },
                 height: 50,
               ),
             ),

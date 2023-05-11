@@ -4,14 +4,14 @@ import 'package:project_manager/modules/home_page_admin/home_page_admin.dart';
 
 import '../../shared/component/component.dart';
 
-class StudentLogin extends StatefulWidget {
-  const StudentLogin({super.key});
+class StudentLogin1 extends StatefulWidget {
+  const StudentLogin1({super.key});
 
   @override
-  State<StudentLogin> createState() => _StudentLoginState();
+  State<StudentLogin1> createState() => _StudentLogin1State();
 }
 
-class _StudentLoginState extends State<StudentLogin> {
+class _StudentLogin1State extends State<StudentLogin1> {
   var emailControllor = TextEditingController();
   var passwordControllor = TextEditingController();
   var fkey = GlobalKey<FormState>();

@@ -288,20 +288,59 @@ class _ProjectFormState extends State<ProjectForm> {
                 const SizedBox(
                   height: 15.0,
                 ),
-                projectFormTextForm(
-                  //project timeLine
-                  controller: projectTime,
-                  type: TextInputType.name,
-                  validator: (value) {
-                    if (value!.trim().isEmpty) {
-                      return "project Time Line must not be empty !";
-                    }
-                    return null;
-                  },
-                  label: "project Time Line",
-                  prefix: Icons.text_fields,
-                  maxLine: 5,
-                  minLine: 1,
+                const Text(
+                  //paksndokasndlkasndandnajdajdjad
+                  "Project timeLine :",
+                  style: TextStyle(
+                    color: mainColor,
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(
+                  height: 10.0,
+                ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: SizedBox(
+                        width: 200.0,
+                        child: projectFormTextForm(
+                          //STUD name1
+                          controller: projectTime,
+                          type: TextInputType.name,
+                          validator: (value) {
+                            if (value!.trim().isEmpty) {
+                              return "Project timeLine must not be empty!";
+                            }
+                          },
+                          label: "From",
+                          prefix: Icons.access_time_outlined,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 10.0,
+                    ),
+                    Expanded(
+                      child: SizedBox(
+                        width: 200.0,
+                        child: projectFormTextForm(
+                          //STUD ID1
+                          controller: studentId1,
+                          type: TextInputType.number,
+                          validator: (value) {
+                            if (value!.trim().isEmpty) {
+                              return "project timeLine must not be empty !";
+                            }
+                            return null;
+                          },
+                          label: "To",
+                          prefix: Icons.access_time_outlined,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
                 const SizedBox(
                   height: 15.0,
