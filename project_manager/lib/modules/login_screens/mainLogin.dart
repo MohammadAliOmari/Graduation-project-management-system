@@ -1,21 +1,24 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-
-import '../../layout/project_manager_layout.dart';
-import '../../layout/project_manager_layout_admin.dart';
-import '../../shared/component/component.dart';
+import 'package:project_manager/layout/project_manager_layout.dart';
+import 'package:project_manager/layout/project_manager_layout_admin.dart';
+import 'package:project_manager/modules/home_page_admin/home_page_admin.dart';
+import 'package:project_manager/shared/component/constant.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:http/http.dart' as http;
+import 'package:project_manager/shared/sharedPreferences/generalSharedPreferences.dart';
+import '../../shared/component/component.dart';
 import '../home_page_doc/home_page_doc.dart';
 
-class StudentLogin1 extends StatefulWidget {
-  const StudentLogin1({super.key});
+class mainLogin extends StatefulWidget {
+  const mainLogin({super.key});
 
   @override
-  State<StudentLogin1> createState() => _StudentLogin1State();
+  State<mainLogin> createState() => _mainLoginState();
 }
 
-class _StudentLogin1State extends State<StudentLogin1> {
+class _mainLoginState extends State<mainLogin> {
   var emailControllor = TextEditingController();
   var passwordControllor = TextEditingController();
   var fkey = GlobalKey<FormState>();
@@ -25,6 +28,7 @@ class _StudentLogin1State extends State<StudentLogin1> {
     return Scaffold(
       appBar: AppBar(
         // backgroundColor: Colors.green,
+        automaticallyImplyLeading: false,
         title: const Text(
           "AABU Project Manager",
         ),
@@ -42,6 +46,7 @@ class _StudentLogin1State extends State<StudentLogin1> {
                   const Text(
                     "Login",
                     style: TextStyle(
+                      color: mainColor,
                       fontSize: 40.0,
                       fontWeight: FontWeight.bold,
                       // color: Colors.green,
@@ -94,10 +99,10 @@ class _StudentLogin1State extends State<StudentLogin1> {
                     text: "Login",
                     function: () {
                       if (fkey.currentState!.validate()) {
-                        // login();
+                        login();
                       }
                     },
-                    // backGroundClolor: Colors.green,7
+                    // backGroundClolor: Colors.green,
                     radius: 40.0,
                   ),
                 ],
@@ -108,58 +113,55 @@ class _StudentLogin1State extends State<StudentLogin1> {
       ),
     );
   }
-
-  // login() async {
-  //   EasyLoading.show(status: 'loading...');
-  //   final response = await http.post(
-  //     Uri.parse("${ConsValues.BASEURL}login.php"),
-  //     body: {
-  //       "university_id": emailControllor.text,
-  //       "pass": passwordControllor.text
-  //     },
-  //   );
-  //   EasyLoading.dismiss();
-  //   if (response.statusCode == 200) {
-  //     var jsonBody = jsonDecode(response.body);
-  //     if (jsonBody['result']) {
-  //       General.savePrefString(
-  //           ConsValues.university_id, jsonBody['university_id']);
-  //       General.savePrefString(ConsValues.pass, jsonBody['pass']);
-  //       // General.savePrefString(ConsValues.name, jsonBody['name']);
-
-  //       if (jsonBody['id_user_type'] == "1") {
-  //         navigateTo(context, ProjectManagerLayoutAdmin());
-  //       } else if (jsonBody['id_user_type'] == "2") {
-  //         Navigator.pushReplacement(
-  //           context,
-  //           MaterialPageRoute(
-  //             builder: (context) {
-  //               return ProjectManagerLayout();
-  //             },
-  //           ),
-  //         );
-  //       } else if (jsonBody['id_user_type'] == "3") {
-  //         navigateTo(context, HomePageDoc());
-  //       }
-  //     } else {
-  //       showDialog(
-  //         context: context,
-  //         builder: (context) {
-  //           return AlertDialog(
-  //             icon: Icon(Icons.error),
-  //             content: Text(jsonBody['msg']),
-  //             actions: [
-  //               TextButton(
-  //                 onPressed: () {
-  //                   Navigator.pop(context);
-  //                 },
-  //                 child: Text("OK"),
-  //               ),
-  //             ],
-  //           );
-  //         },
-  //       );
-  //     }
-  //   }
-  // }
+  login() async {
+    EasyLoading.show(status: 'loading...');
+    final response = await http.post(
+      Uri.parse("${ConsValues.BASEURL}logIn.php"),
+      body: {
+        "university_id": emailControllor.text,
+        "pass": passwordControllor.text
+      },
+    );
+    EasyLoading.dismiss();
+    if (response.statusCode == 200) {
+      var jsonBody = jsonDecode(response.body);
+      if (jsonBody['result']) {
+      await  General.savePrefString("university_id", jsonBody['university_id']);
+       await General.savePrefString("pass", jsonBody['pass']);
+        // General.savePrefString(ConsValues.name, jsonBody['name']);
+        if (jsonBody['id_user_type'] == "1") {
+          navigateTo(context, ProjectManagerLayoutAdmin());
+        } else if (jsonBody['id_user_type'] == "2") {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) {
+                return HomePageDoc();
+              },
+            ),
+          );
+        } else if (jsonBody['id_user_type'] == "3") {
+          navigateTo(context, ProjectManagerLayout());
+        }
+      } else {
+        showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              icon: Icon(Icons.error),
+              content: Text(jsonBody['msg']),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text("OK"),
+                ),
+              ],
+            );
+          },
+        );
+      }
+    }
+  }
 }

@@ -1,12 +1,9 @@
-import 'dart:convert';
-import 'dart:ffi';
 import 'package:flutter/material.dart';
-import 'package:project_manager/modules/home_page_doc/home_page_doc.dart';
 import 'package:project_manager/shared/component/component.dart';
-import 'package:http/http.dart' as http;
+
 import '../shared/component/constant.dart';
 
-class ProjectInfo extends StatefulWidget {
+class ProjectInfoStudent extends StatefulWidget {
   String stdName1;
   String stdName2;
   String stdName3;
@@ -20,9 +17,10 @@ class ProjectInfo extends StatefulWidget {
   String goals;
   String timeLine1;
   String timeLine2;
-  String docname;
   String docid;
-  ProjectInfo({
+  String docname;
+  String note;
+  ProjectInfoStudent({
     super.key,
     required this.stdName1,
     required this.stdName2,
@@ -39,10 +37,11 @@ class ProjectInfo extends StatefulWidget {
     required this.timeLine2,
     required this.docname,
     required this.docid,
+    required this.note,
   });
 
   @override
-  State<ProjectInfo> createState() => _ProjectInfoState(
+  State<ProjectInfoStudent> createState() => _ProjectInfoStudentState(
         studentName1: stdName1,
         studentName2: stdName2,
         studentName3: stdName3,
@@ -58,10 +57,11 @@ class ProjectInfo extends StatefulWidget {
         timeLine2: timeLine2,
         docid: docid,
         docname: docname,
+        note: note,
       );
 }
 
-class _ProjectInfoState extends State<ProjectInfo> {
+class _ProjectInfoStudentState extends State<ProjectInfoStudent> {
   String studentName1;
   String studentName2;
   String studentName3;
@@ -77,7 +77,8 @@ class _ProjectInfoState extends State<ProjectInfo> {
   String timeLine2;
   String docid;
   String docname;
-  _ProjectInfoState({
+  String note;
+  _ProjectInfoStudentState({
     required this.studentName1,
     required this.studentName2,
     required this.studentName3,
@@ -91,26 +92,10 @@ class _ProjectInfoState extends State<ProjectInfo> {
     required this.goals,
     required this.timeLine1,
     required this.timeLine2,
-    required this.docid,
     required this.docname,
+    required this.docid,
+    required this.note,
   });
-  TextEditingController noteControler = TextEditingController();
-  Future changeState(stdID1) async {
-    var url = "${ConsValues.BASEURL}change_state_approved.php";
-    var res = await http.post(Uri.parse(url), body: {'university_id': stdID1});
-    if (res.statusCode == 200) {
-      var jsonBody = jsonDecode(res.body);
-    }
-  }
-
-  Future changeStateRejected(stdID1) async {
-    var url = "${ConsValues.BASEURL}change_state_rejected.php";
-    var res = await http.post(Uri.parse(url), body: {'university_id': stdID1});
-    if (res.statusCode == 200) {
-      var jsonBody = jsonDecode(res.body);
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -178,9 +163,10 @@ class _ProjectInfoState extends State<ProjectInfo> {
                   )
                 ],
               ),
-              const SizedBox(
-                height: 20.0,
-              ),
+              myDivider(),
+              // const SizedBox(
+              //   height: 20.0,
+              // ),
               Row(
                 children: [
                   Container(
@@ -227,9 +213,10 @@ class _ProjectInfoState extends State<ProjectInfo> {
                   )
                 ],
               ),
-              const SizedBox(
-                height: 20.0,
-              ),
+              myDivider(),
+              // const SizedBox(
+              //   height: 20.0,
+              // ),
               Row(
                 children: [
                   Container(
@@ -276,9 +263,10 @@ class _ProjectInfoState extends State<ProjectInfo> {
                   )
                 ],
               ),
-              const SizedBox(
-                height: 20.0,
-              ),
+              myDivider(),
+              // const SizedBox(
+              //   height: 20.0,
+              // ),
               Row(
                 children: [
                   Container(
@@ -325,9 +313,10 @@ class _ProjectInfoState extends State<ProjectInfo> {
                   )
                 ],
               ),
-              const SizedBox(
-                height: 20.0,
-              ),
+              myDivider(),
+              // const SizedBox(
+              //   height: 20.0,
+              // ),
               Row(
                 children: [
                   Container(
@@ -374,9 +363,10 @@ class _ProjectInfoState extends State<ProjectInfo> {
                   ),
                 ],
               ),
-              const SizedBox(
-                height: 20.0,
-              ),
+              myDivider(),
+              // const SizedBox(
+              //   height: 5.0,
+              // ),
               Row(
                 children: [
                   Container(
@@ -410,9 +400,10 @@ class _ProjectInfoState extends State<ProjectInfo> {
                   ),
                 ],
               ),
-              const SizedBox(
-                height: 20.0,
-              ),
+              myDivider(),
+              // const SizedBox(
+              //   height: 20.0,
+              // ),
               Row(
                 children: [
                   Container(
@@ -454,9 +445,10 @@ class _ProjectInfoState extends State<ProjectInfo> {
                   ),
                 ],
               ),
-              const SizedBox(
-                height: 20.0,
-              ),
+              myDivider(),
+              // const SizedBox(
+              //   height: 20.0,
+              // ),
               Row(
                 children: [
                   Container(
@@ -498,9 +490,10 @@ class _ProjectInfoState extends State<ProjectInfo> {
                   ),
                 ],
               ),
-              const SizedBox(
-                height: 20.0,
-              ),
+              myDivider(),
+              // const SizedBox(
+              //   height: 20.0,
+              // ),
               Row(
                 children: [
                   Container(
@@ -560,86 +553,69 @@ class _ProjectInfoState extends State<ProjectInfo> {
                   )
                 ],
               ),
-              const SizedBox(height: 50.0),
               Row(
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  defualtButton(
-                    text: "Approved",
-                    function: () {
-                      changeState(stdID1);
-                      navigateTo(context, HomePageDoc());
-                    },
-                    radius: 40,
-                    width: 150,
+                  Container(
+                    width: 80.0,
+                    height: 80.0,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20.0),
+                      image: const DecorationImage(
+                        image: AssetImage("assets/images/timeline.png"),
+                      ),
+                    ),
                   ),
                   const SizedBox(
                     width: 20.0,
                   ),
-                  defualtButton(
-                      text: "Regected",
-                      function: () {
-                        addNote();
-                      },
-                      radius: 40,
-                      width: 150,
-                      backGroundClolor: Colors.red),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      // const Text(
+                      //   "Project Timeline",
+                      //   style: TextStyle(
+                      //     fontSize: 17.0,
+                      //     fontWeight: FontWeight.bold,
+                      //     color: mainColor,
+                      //   ),
+                      //   maxLines: 2,
+                      // ),
+                      Text(
+                        note,
+                        style: const TextStyle(
+                          fontSize: 15.0,
+                          color: mainColor,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 10.0,
+                      ),
+                      // const Text(
+                      //   "TO",
+                      //   style: TextStyle(
+                      //     fontSize: 15.0,
+                      //     color: mainColor,
+                      //   ),
+                      // ),
+                      const SizedBox(
+                        width: 15.0,
+                      ),
+                      // Text(
+                      //   timeLine2,
+                      //   style: const TextStyle(
+                      //     fontSize: 15.0,
+                      //     color: mainColor,
+                      //   ),
+                      // ),
+                    ],
+                  )
                 ],
-              )
+              ),
             ],
           ),
         ),
       ),
-    );
-  }
-
-  Future updateNote(stdID1) async {
-    var url = "${ConsValues.BASEURL}updateNote.php";
-    var res = await http.post(Uri.parse(url), body: {
-      'university_id': stdID1,
-      'note': noteControler.text,
-    });
-    if (res.statusCode == 200) {
-      var jsonBody = jsonDecode(res.body);
-    }
-  }
-
-  addNote() {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          content: Container(
-            height: 200,
-            width: double.infinity,
-            child: Column(
-              children: [
-                const Text("Write Note Why You Rejected"),
-                SizedBox(
-                  height: 10,
-                ),
-                defualtTextForm(
-                    controller: noteControler,
-                    type: TextInputType.text,
-                    validator: (Value) {},
-                    label: 'Note',
-                    prefix: Icons.note_alt_outlined),
-                SizedBox(
-                  height: 10,
-                ),
-                defualtButton(
-                    radius: 40,
-                    text: 'Send',
-                    function: () {
-                      updateNote(stdID1);
-                      changeStateRejected(stdID1);
-                      navigateTo(context, HomePageDoc());
-                    })
-              ],
-            ),
-          ),
-        );
-      },
     );
   }
 }

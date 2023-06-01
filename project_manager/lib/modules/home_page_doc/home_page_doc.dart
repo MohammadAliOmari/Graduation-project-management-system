@@ -4,7 +4,11 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:project_manager/modules/all_request_pages_doc/all_request_page_doc.dart';
 import 'package:project_manager/shared/component/component.dart';
 
+import '../../model/users_model.dart';
+import '../../provider/homePage_doctor_provider.dart';
 import '../../shared/component/constant.dart';
+import '../../shared/sharedPreferences/generalSharedPreferences.dart';
+import '../login_screens/mainLogin.dart';
 
 class HomePageDoc extends StatefulWidget {
   const HomePageDoc({super.key});
@@ -14,15 +18,95 @@ class HomePageDoc extends StatefulWidget {
 }
 
 class _HomePageDocState extends State<HomePageDoc> {
+  StudentModel doctorModel = StudentModel.empty();
+  @override
+  void initState() {
+    super.initState();
+     get();
+  }
+
+  getInfo() async {
+    doctorModel = await DoctorHomePageProvider().getinfo(ConsValues.university_id).then((value) {setState(() {
+      
+    });
+            return value;
+
+      } );
+    setState(() {
+      doctorModel;
+    });
+  }
+
+  get() async {
+  ConsValues.name=await  General.getPrefString("name", "").then((value) {
+    setState(() {
+      });
+    return value;
+      
+    });
+
+ ConsValues.university_id= await  General.getPrefString("university_id", "").then((value) {
+      return value;
+    });
+    setState(() {
+      });
+    await getInfo();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          IconButton(
+              onPressed: () async {
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      icon: const Icon(Icons.logout_sharp),
+                      content: const Text("Are You Sure You Want To LogOut"),
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: const Text("Cancel"),
+                        ),
+                        TextButton(
+                          onPressed: () async {
+                            await General.remove(ConsValues.university_id);
+                            // ignore: use_build_context_synchronously
+                            Navigator.pop(context);
+                            // ignore: use_build_context_synchronously
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return const mainLogin();
+                                },
+                              ),
+                            );
+                          },
+                          child: const Text("OK"),
+                        ),
+                      ],
+                    );
+                  },
+                );
+
+              },
+              icon: const Icon(
+                Icons.logout,
+                color: Colors.white,
+              )),
+        ],
         title: const Text(
           'AABU Project Manager',
         ),
+        automaticallyImplyLeading: false,
       ),
-      body: Container(
+      body:doctorModel.users.isNotEmpty ?
+       Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage('assets/images/def_background.jpg'),
@@ -54,9 +138,9 @@ class _HomePageDocState extends State<HomePageDoc> {
                           borderRadius: BorderRadius.circular(20)),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
-                        children: const [
+                        children:  [
                           Text(
-                            'Doctor Name',
+                            doctorModel.users.first.name,
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 18.0,
@@ -67,7 +151,7 @@ class _HomePageDocState extends State<HomePageDoc> {
                             height: 20.0,
                           ),
                           Text(
-                            '1728965403',
+                            doctorModel.users.first.universityId,
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 16.0,
@@ -94,7 +178,8 @@ class _HomePageDocState extends State<HomePageDoc> {
             ),
           ],
         ),
-      ),
+      )
+      : const Center(child: CircularProgressIndicator()),
     );
   }
 }

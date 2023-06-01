@@ -4,7 +4,10 @@ import 'package:project_manager/modules/request_page/requst_page.dart';
 import 'package:project_manager/modules/request_status_page/request_status_page.dart';
 
 import '../modules/home_page/home_page.dart';
+import '../modules/login_screens/mainLogin.dart';
 import '../shared/component/component.dart';
+import '../shared/component/constant.dart';
+import '../shared/sharedPreferences/generalSharedPreferences.dart';
 
 class ProjectManagerLayout extends StatefulWidget {
   const ProjectManagerLayout({super.key});
@@ -36,11 +39,56 @@ class _ProjectManagerLayoutState extends State<ProjectManagerLayout> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xff01b397),
+        actions: [
+          IconButton(
+              onPressed: () async {
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      icon: const Icon(Icons.logout_sharp),
+                      content: const Text("Are You Sure You Want To LogOut"),
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: const Text("Cancel"),
+                        ),
+                        TextButton(
+                          onPressed: () async {
+                            await General.remove(ConsValues.university_id);
+                            // ignore: use_build_context_synchronously
+                            Navigator.pop(context);
+                            // ignore: use_build_context_synchronously
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return const mainLogin();
+                                },
+                              ),
+                            );
+                          },
+                          child: const Text("OK"),
+                        ),
+                      ],
+                    );
+                  },
+                );
+
+              },
+              icon: const Icon(
+                Icons.logout,
+                color: Colors.white,
+              )),
+        ],
         title: Center(
           child: Text(
             titles[currentIndex],
           ),
         ),
+        automaticallyImplyLeading: false,
       ),
       body: screens[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
@@ -48,6 +96,7 @@ class _ProjectManagerLayoutState extends State<ProjectManagerLayout> {
         onTap: (index) {
           setState(() {
             currentIndex = index;
+            FocusScope.of(context).unfocus();
           });
         },
         items: const [

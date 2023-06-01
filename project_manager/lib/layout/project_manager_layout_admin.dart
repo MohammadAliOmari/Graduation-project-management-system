@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:project_manager/modules/all_request_page/all_request_page.dart';
 import 'package:project_manager/modules/all_users_page/all_users_page.dart';
 import 'package:project_manager/modules/home_page_admin/home_page_admin.dart';
+import 'package:project_manager/modules/login_screens/mainLogin.dart';
+import 'package:project_manager/shared/component/component.dart';
+import 'package:project_manager/shared/component/constant.dart';
+import 'package:project_manager/shared/sharedPreferences/generalSharedPreferences.dart';
 
 class ProjectManagerLayoutAdmin extends StatefulWidget {
   const ProjectManagerLayoutAdmin({super.key});
@@ -35,6 +40,51 @@ class _ProjectManagerLayoutAdminState extends State<ProjectManagerLayoutAdmin> {
             titles[currentIndex],
           ),
         ),
+        actions: [
+          IconButton(
+              onPressed: () async {
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      icon: const Icon(Icons.logout_sharp),
+                      content: const Text("Are You Sure You Want To LogOut"),
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: const Text("Cancel"),
+                        ),
+                        TextButton(
+                          onPressed: () async {
+                            await General.remove(ConsValues.university_id);
+                            // ignore: use_build_context_synchronously
+                            Navigator.pop(context);
+                            // ignore: use_build_context_synchronously
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return const mainLogin();
+                                },
+                              ),
+                            );
+                          },
+                          child: const Text("OK"),
+                        ),
+                      ],
+                    );
+                  },
+                );
+
+              },
+              icon: const Icon(
+                Icons.logout,
+                color: Colors.white,
+              )),
+        ],
+        automaticallyImplyLeading: false,
       ),
       body: screens[currentIndex],
       bottomNavigationBar: BottomNavigationBar(

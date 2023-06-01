@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import '../../shared/component/component.dart';
+import '../../shared/component/constant.dart';
+import 'package:http/http.dart' as http;
+
+import 'add_more_students.dart';
 
 class AddStudent extends StatefulWidget {
   const AddStudent({super.key});
@@ -10,6 +15,41 @@ class AddStudent extends StatefulWidget {
 }
 
 class _AddStudentState extends State<AddStudent> {
+  addStd() async {
+    EasyLoading.show(status: 'loading...');
+    final response = await http.post(
+      Uri.parse("${ConsValues.BASEURL}add_student.php"),
+      body: {
+        "university_id": idController.text,
+        "name": studentName.text,
+        "pass": passwordController.text,
+      },
+    );
+
+    EasyLoading.dismiss();
+    if (response.statusCode == 200) {
+      Navigator.pop(context);
+    } else {
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            icon: Icon(Icons.error),
+            content: const Text("signUp failed email exsist"),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Text("ok"),
+              ),
+            ],
+          );
+        },
+      );
+    }
+  }
+
   var idController = TextEditingController();
   var passwordController = TextEditingController();
   var studentName = TextEditingController();
@@ -47,7 +87,7 @@ class _AddStudentState extends State<AddStudent> {
                     style: TextStyle(
                       fontSize: 40.0,
                       fontWeight: FontWeight.bold,
-                      // color: Colors.green,
+                      color: mainColor,
                     ),
                   ),
                   const SizedBox(
@@ -61,7 +101,7 @@ class _AddStudentState extends State<AddStudent> {
                         if (value!.trim().isEmpty) {
                           return "ID must not be empty";
                         }
-                        if (value.length != 11) {
+                        if (value.length != 10) {
                           return "ID must be 10 numbers";
                         }
 
@@ -151,7 +191,26 @@ class _AddStudentState extends State<AddStudent> {
                   defualtButton(
                     text: "Add",
                     function: () {
-                      if (studentFormKey.currentState!.validate()) {}
+                      if (studentFormKey.currentState!.validate()) {
+                        addStd();
+                      }
+                    },
+                    // backGroundClolor: Colors.green,
+                    radius: 40.0,
+                  ),
+                  const SizedBox(
+                    height: 15.0,
+                  ),
+                  defualtButton(
+                    text: "Add more than 1 student",
+                    function: () {
+                      setState(() {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => AddMoreStudents(),
+                            ));
+                      });
                     },
                     // backGroundClolor: Colors.green,
                     radius: 40.0,

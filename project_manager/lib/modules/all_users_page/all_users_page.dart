@@ -1,7 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:project_manager/modules/all_users_page/edit_user_page.dart';
 
 import '../../shared/component/component.dart';
 import '../../shared/component/constant.dart';
+import 'package:http/http.dart' as http;
 
 class AllUsersPage extends StatefulWidget {
   const AllUsersPage({super.key});
@@ -11,6 +15,41 @@ class AllUsersPage extends StatefulWidget {
 }
 
 class _AllUsersPageState extends State<AllUsersPage> {
+  Future getData1() async {
+    var url = "${ConsValues.BASEURL}select_all_student.php";
+    var res = await http.get(Uri.parse(url));
+    if (res.statusCode == 200) {
+      var red = jsonDecode(res.body);
+      setState(() {
+        studentList.addAll(red);
+      });
+    }
+  }
+
+  Future getData() async {
+    var url = "${ConsValues.BASEURL}select_all_doctor.php";
+    var res = await http.get(Uri.parse(url));
+    if (res.statusCode == 200) {
+      var red = jsonDecode(res.body);
+      setState(() {
+        doctoList.addAll(red);
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    get();
+  }
+
+  get() async {
+    await getData();
+    getData1();
+  }
+
+  List doctoList = [];
+  List studentList = [];
   bool _showList1 = true;
   bool _showList2 = false;
 
@@ -107,10 +146,18 @@ class _AllUsersPageState extends State<AllUsersPage> {
                     child: ListView.separated(
                       scrollDirection: Axis.vertical,
                       shrinkWrap: true,
-                      itemBuilder: (context, index) =>
-                          buildUserItem(name: 'Doctor Name', id: 1754286142),
+                      itemBuilder: (context, index) => GestureDetector(
+                        onTap: () {
+                          navigateTo(
+                              context, editUsers(index: index, l1: doctoList));
+                        },
+                        child: buildUserItem(
+                          name: doctoList[index]['name'],
+                          id: doctoList[index]['university_id'],
+                        ),
+                      ),
                       separatorBuilder: (context, index) => myDivider(),
-                      itemCount: 15,
+                      itemCount: doctoList.length,
                     ),
                   ),
                 if (_showList2)
@@ -118,12 +165,17 @@ class _AllUsersPageState extends State<AllUsersPage> {
                     child: ListView.separated(
                       scrollDirection: Axis.vertical,
                       shrinkWrap: true,
-                      itemBuilder: (context, index) => buildUserItem(
-                        name: 'Student Name',
-                        id: 1950901114,
+                      itemBuilder: (context, index) => GestureDetector(
+                        onTap: () {
+                          navigateTo(context,
+                              editUsers(index: index, l1: studentList));
+                        },
+                        child: buildUserItem(
+                            name: studentList[index]['name'],
+                            id: studentList[index]['university_id']),
                       ),
                       separatorBuilder: (context, index) => myDivider(),
-                      itemCount: 15,
+                      itemCount: studentList.length,
                     ),
                   ),
               ],

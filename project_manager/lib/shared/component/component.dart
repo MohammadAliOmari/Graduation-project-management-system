@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:project_manager/shared/component/constant.dart';
+import 'package:flutter/services.dart';
+
+import 'constant.dart';
+
 
 Widget defualtButton({
   double width = double.infinity,
@@ -78,9 +81,11 @@ Widget projectFormTextForm({
   required TextInputType type,
   required String? Function(String?)? validator,
   required String label,
+  String? hint,
   void Function(String)? onSubmit,
   void Function(String)? onChanged,
   void Function()? onTap,
+  List<TextInputFormatter>? listInputFormatter,
 
   //icons
   required IconData prefix,
@@ -94,6 +99,7 @@ Widget projectFormTextForm({
     TextFormField(
       controller: controller,
       keyboardType: type,
+      inputFormatters: listInputFormatter,
       validator: validator,
       onFieldSubmitted: onSubmit,
       onTap: onTap,
@@ -103,6 +109,7 @@ Widget projectFormTextForm({
       decoration: InputDecoration(
         prefixIconColor: mainColor,
         labelText: label,
+        hintText: hint,
         prefixIcon: Icon(
           prefix,
         ),
@@ -121,7 +128,7 @@ Widget projectFormTextForm({
     );
 Widget buildUserItem({
   required String name,
-  required int id,
+  required String id,
 }) =>
     Row(
       children: [
@@ -129,9 +136,10 @@ Widget buildUserItem({
           alignment: AlignmentDirectional.bottomEnd,
           children: const [
             CircleAvatar(
-              radius: 30.0,
-              backgroundImage: NetworkImage(
-                  'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'),
+              radius: 35.0,
+              backgroundImage: AssetImage(
+                ('assets/images/user.png'),
+              ),
             ),
           ],
         ),
@@ -146,7 +154,7 @@ Widget buildUserItem({
                 name,
                 style: const TextStyle(
                   color: Colors.black,
-                  fontSize: 16.0,
+                  fontSize: 18.0,
                   fontWeight: FontWeight.bold,
                 ),
                 maxLines: 1,
@@ -176,6 +184,8 @@ Widget buildUserItem({
     );
 Widget buildRequestItem({
   required String statues,
+  required String projectName,
+  required String studentName,
   required Color stcolor,
 }) =>
     Row(
@@ -184,9 +194,10 @@ Widget buildRequestItem({
           alignment: AlignmentDirectional.bottomEnd,
           children: const [
             CircleAvatar(
-              radius: 30.0,
-              backgroundImage: NetworkImage(
-                  'https://png.pngtree.com/png-vector/20190701/ourmid/pngtree-reports-icon-for-your-project-png-image_1532801.jpg'),
+              radius: 35.0,
+              backgroundImage: AssetImage(
+                ('assets/images/check-list.png'),
+              ),
             ),
           ],
         ),
@@ -197,9 +208,9 @@ Widget buildRequestItem({
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                'Project Name',
-                style: TextStyle(
+              Text(
+                projectName,
+                style: const TextStyle(
                   color: Colors.black,
                   fontSize: 16.0,
                   fontWeight: FontWeight.bold,
@@ -212,12 +223,12 @@ Widget buildRequestItem({
               ),
               Row(
                 children: [
-                  const Expanded(
+                  Expanded(
                     child: Text(
-                      'Student Name',
+                      studentName,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
+                      style:const TextStyle(
                         color: Colors.black,
                       ),
                     ),
@@ -270,6 +281,6 @@ Widget myDivider() => Padding(
       child: Container(
         width: double.infinity,
         height: 1.0,
-        color: Colors.grey[500],
+        color: mainColor,
       ),
     );

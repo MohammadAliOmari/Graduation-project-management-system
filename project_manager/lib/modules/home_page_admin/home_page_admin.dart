@@ -4,8 +4,11 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:project_manager/modules/add_users_pages/add_doctor.dart';
 import 'package:project_manager/modules/add_users_pages/add_student.dart';
 
+import '../../model/users_model.dart';
+import '../../provider/admin_HomePage_provider.dart';
 import '../../shared/component/component.dart';
 import '../../shared/component/constant.dart';
+import '../../shared/sharedPreferences/generalSharedPreferences.dart';
 
 class HomePageAdmin extends StatefulWidget {
   const HomePageAdmin({super.key});
@@ -15,10 +18,45 @@ class HomePageAdmin extends StatefulWidget {
 }
 
 class _HomePageAdminState extends State<HomePageAdmin> {
+  StudentModel adminModel = StudentModel.empty();
+  @override
+  void initState() {
+    super.initState();
+     get();
+  }
+
+  getInfo() async {
+    adminModel = await AdminHomePageProvider().getinfo(ConsValues.university_id).then((value) {setState(() {
+      
+    });
+            return value;
+
+      } );
+    setState(() {
+      adminModel;
+    });
+  }
+
+  get() async {
+  ConsValues.name=await  General.getPrefString("name", "").then((value) {
+    setState(() {
+      });
+    return value;
+      
+    });
+
+ ConsValues.university_id= await  General.getPrefString("university_id", "").then((value) {
+      return value;
+    });
+    setState(() {
+      });
+    await getInfo();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
+      body:adminModel.users.isNotEmpty ?
+       Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage('assets/images/def_background.jpg'),
@@ -54,21 +92,21 @@ class _HomePageAdminState extends State<HomePageAdmin> {
                         children: [
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
-                            children: const [
+                            children:  [
                               Text(
-                                'Administrator',
-                                style: TextStyle(
+                                adminModel.users.first.name,
+                                style:const TextStyle(
                                   color: Colors.white,
                                   fontSize: 18.0,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20.0,
                               ),
                               Text(
-                                '152637',
-                                style: TextStyle(
+                                adminModel.users.first.universityId,
+                                style:const TextStyle(
                                   color: Colors.white,
                                   fontSize: 16.0,
                                   fontWeight: FontWeight.bold,
@@ -120,7 +158,8 @@ class _HomePageAdminState extends State<HomePageAdmin> {
             ),
           ],
         ),
-      ),
+      )
+      : const Center(child: CircularProgressIndicator()),
     );
   }
 }
