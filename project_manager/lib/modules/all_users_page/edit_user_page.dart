@@ -8,19 +8,19 @@ import 'package:http/http.dart' as http;
 
 import '../../shared/component/constant.dart';
 
-class editUsers extends StatefulWidget {
-  const editUsers({super.key, required this.index, required this.l1});
+class EditUsers extends StatefulWidget {
+  const EditUsers({super.key, required this.index, required this.l1});
   final List l1;
   final int index;
   @override
-  State<editUsers> createState() => _editUsersState();
+  State<EditUsers> createState() => _EditUsersState();
 }
 
 TextEditingController name = TextEditingController();
 TextEditingController pass = TextEditingController();
 TextEditingController id = TextEditingController();
 
-class _editUsersState extends State<editUsers> {
+class _EditUsersState extends State<EditUsers> {
   Future editData() async {
     var url = "${ConsValues.BASEURL}updateuser.php";
 
@@ -30,11 +30,8 @@ class _editUsersState extends State<editUsers> {
       'pass': pass.text,
     });
     setState(() {
-      if (widget.index != null) {
-        id.text = widget.l1[widget.index]['university_id'];
-        name.text = widget.l1[widget.index]['name'];
-        pass.text = widget.l1[widget.index]['pass'];
-      }
+      id.text = widget.l1[widget.index]['university_id'];
+      name.text = widget.l1[widget.index]['name'];
     });
   }
 
@@ -67,7 +64,7 @@ class _editUsersState extends State<editUsers> {
             label: "ID",
             prefix: Icons.numbers,
           ),
-          SizedBox(
+          const SizedBox(
             height: 15.0,
           ),
           projectFormTextForm(

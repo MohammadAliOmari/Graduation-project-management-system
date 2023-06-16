@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:project_manager/modules/all_users_page/edit_user_page.dart';
-
 import '../../shared/component/component.dart';
 import '../../shared/component/constant.dart';
 import 'package:http/http.dart' as http;
@@ -149,7 +148,7 @@ class _AllUsersPageState extends State<AllUsersPage> {
                       itemBuilder: (context, index) => GestureDetector(
                         onTap: () {
                           navigateTo(
-                              context, editUsers(index: index, l1: doctoList));
+                              context, EditUsers(index: index, l1: doctoList));
                         },
                         child: buildUserItem(
                           name: doctoList[index]['name'],
@@ -168,7 +167,7 @@ class _AllUsersPageState extends State<AllUsersPage> {
                       itemBuilder: (context, index) => GestureDetector(
                         onTap: () {
                           navigateTo(context,
-                              editUsers(index: index, l1: studentList));
+                              EditUsers(index: index, l1: studentList));
                         },
                         child: buildUserItem(
                             name: studentList[index]['name'],

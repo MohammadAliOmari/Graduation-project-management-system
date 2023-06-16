@@ -1,17 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-
-import 'package:project_manager/layout/project_manager_layout.dart';
-import 'package:project_manager/layout/project_manager_layout_admin.dart';
-import 'package:project_manager/modules/all_request_page/all_request_page.dart';
-import 'package:project_manager/modules/all_users_page/all_users_page.dart';
-import 'package:project_manager/modules/first_screen/first_screen.dart';
-import 'package:project_manager/modules/home_page/home_page.dart';
-import 'package:project_manager/modules/home_page_admin/home_page_admin.dart';
-import 'package:project_manager/modules/home_page_doc/home_page_doc.dart';
-import 'package:project_manager/modules/login_screens/student_login.dart';
-import 'package:project_manager/modules/project_info.dart';
-import 'package:project_manager/modules/request_page/requst_page.dart';
 import 'package:project_manager/provider/doctorListprovider.dart';
 import 'package:project_manager/shared/component/constant.dart';
 import 'package:provider/provider.dart';

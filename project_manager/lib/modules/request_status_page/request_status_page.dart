@@ -110,6 +110,12 @@ class _RequestStatusPageState extends State<RequestStatusPage> {
                                 docname:
                                     projectStatus.projects.first.doctorName,
                                 docid: projectStatus.projects.first.idDoctor,
+                                week1: projectStatus.projects.first.week1,
+                                week2: projectStatus.projects.first.week2,
+                                week3: projectStatus.projects.first.week3,
+                                task1: projectStatus.projects.first.task1,
+                                task2: projectStatus.projects.first.task2,
+                                task3: projectStatus.projects.first.task3,
                                 note: projectStatus.projects.first.note,
                               ));
                         },

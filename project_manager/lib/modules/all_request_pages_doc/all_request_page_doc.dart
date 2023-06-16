@@ -296,6 +296,13 @@ class _AllRequestPageDocState extends State<AllRequestPageDoc> {
                                         allDoctorProject.users[index].idDoctor,
                                     docname: allDoctorProject
                                         .users[index].doctorName,
+                                    note: allDoctorProject.users[index].note,
+                                    week1: allDoctorProject.users[index].week1,
+                                    task1: allDoctorProject.users[index].task1,
+                                    week2: allDoctorProject.users[index].week2,
+                                    task2: allDoctorProject.users[index].task2,
+                                    week3: allDoctorProject.users[index].week3,
+                                    task3: allDoctorProject.users[index].task3,
                                   ));
                             },
                             onDoubleTap: () {},

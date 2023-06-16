@@ -42,6 +42,12 @@ class Project {
   String stdId4;
   String timeLine;
   String timeLine2;
+  String week1;
+  String task1;
+  String week2;
+  String task2;
+  String week3;
+  String task3;
   String note;
 
   Project({
@@ -62,6 +68,12 @@ class Project {
     required this.stdId4,
     required this.timeLine,
     required this.timeLine2,
+    required this.week1,
+    required this.task1,
+    required this.week2,
+    required this.task2,
+    required this.week3,
+    required this.task3,
     required this.note,
   });
 
@@ -83,6 +95,12 @@ class Project {
         stdId4: json["std_id4"],
         timeLine: json["time_line"],
         timeLine2: json["time_line2"],
+        week1: json["week1"],
+        week2: json["week2"],
+        week3: json["week3"],
+        task1: json["task1"],
+        task2: json["task2"],
+        task3: json["task3"],
         note: json["note"],
       );
 
@@ -105,5 +123,11 @@ class Project {
         "time_line": timeLine,
         "time_line2": timeLine2,
         "note": note,
+        "week1": week1,
+        "week2": week2,
+        "week3": week3,
+        "task1": task1,
+        "task2": task2,
+        "task3": task3,
       };
 }

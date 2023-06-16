@@ -3,6 +3,7 @@ import 'package:project_manager/shared/component/component.dart';
 
 import '../shared/component/constant.dart';
 
+// ignore: must_be_immutable
 class ProjectInfoStudent extends StatefulWidget {
   String stdName1;
   String stdName2;
@@ -20,6 +21,12 @@ class ProjectInfoStudent extends StatefulWidget {
   String docid;
   String docname;
   String note;
+  String week1;
+  String task1;
+  String week2;
+  String task2;
+  String week3;
+  String task3;
   ProjectInfoStudent({
     super.key,
     required this.stdName1,
@@ -38,9 +45,16 @@ class ProjectInfoStudent extends StatefulWidget {
     required this.docname,
     required this.docid,
     required this.note,
+    required this.week1,
+    required this.task1,
+    required this.week2,
+    required this.task2,
+    required this.week3,
+    required this.task3,
   });
 
   @override
+  // ignore: no_logic_in_create_state
   State<ProjectInfoStudent> createState() => _ProjectInfoStudentState(
         studentName1: stdName1,
         studentName2: stdName2,
@@ -58,6 +72,12 @@ class ProjectInfoStudent extends StatefulWidget {
         docid: docid,
         docname: docname,
         note: note,
+        week1: week1,
+        week2: week2,
+        week3: week3,
+        task1: task1,
+        task2: task2,
+        task3: task3,
       );
 }
 
@@ -78,6 +98,12 @@ class _ProjectInfoStudentState extends State<ProjectInfoStudent> {
   String docid;
   String docname;
   String note;
+  String week1;
+  String task1;
+  String week2;
+  String task2;
+  String week3;
+  String task3;
   _ProjectInfoStudentState({
     required this.studentName1,
     required this.studentName2,
@@ -95,6 +121,12 @@ class _ProjectInfoStudentState extends State<ProjectInfoStudent> {
     required this.docname,
     required this.docid,
     required this.note,
+    required this.week1,
+    required this.task1,
+    required this.week2,
+    required this.task2,
+    required this.week3,
+    required this.task3,
   });
   @override
   Widget build(BuildContext context) {
@@ -133,7 +165,7 @@ class _ProjectInfoStudentState extends State<ProjectInfoStudent> {
                     width: 20.0,
                   ),
                   Expanded(
-                    child: Container(
+                    child: SizedBox(
                       height: 80.0,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -183,7 +215,7 @@ class _ProjectInfoStudentState extends State<ProjectInfoStudent> {
                     width: 20.0,
                   ),
                   Expanded(
-                    child: Container(
+                    child: SizedBox(
                       height: 80.0,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -233,7 +265,7 @@ class _ProjectInfoStudentState extends State<ProjectInfoStudent> {
                     width: 20.0,
                   ),
                   Expanded(
-                    child: Container(
+                    child: SizedBox(
                       height: 80.0,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -283,7 +315,7 @@ class _ProjectInfoStudentState extends State<ProjectInfoStudent> {
                     width: 20.0,
                   ),
                   Expanded(
-                    child: Container(
+                    child: SizedBox(
                       height: 80.0,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -333,7 +365,7 @@ class _ProjectInfoStudentState extends State<ProjectInfoStudent> {
                     width: 20.0,
                   ),
                   Expanded(
-                    child: Container(
+                    child: SizedBox(
                       height: 80.0,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -342,7 +374,7 @@ class _ProjectInfoStudentState extends State<ProjectInfoStudent> {
                           Expanded(
                             child: Text(
                               docname,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 17.0,
                                 fontWeight: FontWeight.bold,
                                 color: mainColor,
@@ -352,7 +384,7 @@ class _ProjectInfoStudentState extends State<ProjectInfoStudent> {
                           ),
                           Text(
                             docid,
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 15.0,
                               color: mainColor,
                             ),
@@ -420,7 +452,7 @@ class _ProjectInfoStudentState extends State<ProjectInfoStudent> {
                     width: 20.0,
                   ),
                   Expanded(
-                    child: Container(
+                    child: SizedBox(
                       height: 80,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -465,7 +497,7 @@ class _ProjectInfoStudentState extends State<ProjectInfoStudent> {
                     width: 20.0,
                   ),
                   Expanded(
-                    child: Container(
+                    child: SizedBox(
                       height: 80,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -553,6 +585,7 @@ class _ProjectInfoStudentState extends State<ProjectInfoStudent> {
                   )
                 ],
               ),
+              myDivider(),
               Row(
                 children: [
                   Container(
@@ -561,7 +594,217 @@ class _ProjectInfoStudentState extends State<ProjectInfoStudent> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20.0),
                       image: const DecorationImage(
-                        image: AssetImage("assets/images/timeline.png"),
+                        image: AssetImage("assets/images/week.png"),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 20.0,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        week1,
+                        style: const TextStyle(
+                          fontSize: 15.0,
+                          color: mainColor,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 10.0,
+                      ),
+                    ],
+                  )
+                ],
+              ),
+              const SizedBox(
+                height: 10.0,
+              ),
+              Row(
+                children: [
+                  Container(
+                    width: 80.0,
+                    height: 80.0,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20.0),
+                      image: const DecorationImage(
+                        image: AssetImage("assets/images/task.png"),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 20.0,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        task1,
+                        style: const TextStyle(
+                          fontSize: 15.0,
+                          color: mainColor,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 10.0,
+                      ),
+                    ],
+                  )
+                ],
+              ),
+              myDivider(),
+              Row(
+                children: [
+                  Container(
+                    width: 80.0,
+                    height: 80.0,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20.0),
+                      image: const DecorationImage(
+                        image: AssetImage("assets/images/week.png"),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 20.0,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        week2,
+                        style: const TextStyle(
+                          fontSize: 15.0,
+                          color: mainColor,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 10.0,
+                      ),
+                    ],
+                  )
+                ],
+              ),
+              const SizedBox(
+                height: 10.0,
+              ),
+              Row(
+                children: [
+                  Container(
+                    width: 80.0,
+                    height: 80.0,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20.0),
+                      image: const DecorationImage(
+                        image: AssetImage("assets/images/task.png"),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 20.0,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        task2,
+                        style: const TextStyle(
+                          fontSize: 15.0,
+                          color: mainColor,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 10.0,
+                      ),
+                    ],
+                  )
+                ],
+              ),
+              myDivider(),
+              Row(
+                children: [
+                  Container(
+                    width: 80.0,
+                    height: 80.0,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20.0),
+                      image: const DecorationImage(
+                        image: AssetImage("assets/images/week.png"),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 20.0,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        week3,
+                        style: const TextStyle(
+                          fontSize: 15.0,
+                          color: mainColor,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 10.0,
+                      ),
+                    ],
+                  )
+                ],
+              ),
+              const SizedBox(
+                height: 10.0,
+              ),
+              Row(
+                children: [
+                  Container(
+                    width: 80.0,
+                    height: 80.0,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20.0),
+                      image: const DecorationImage(
+                        image: AssetImage("assets/images/task.png"),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 20.0,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        task3,
+                        style: const TextStyle(
+                          fontSize: 15.0,
+                          color: mainColor,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 10.0,
+                      ),
+                    ],
+                  )
+                ],
+              ),
+              myDivider(),
+              Row(
+                children: [
+                  Container(
+                    width: 80.0,
+                    height: 80.0,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20.0),
+                      image: const DecorationImage(
+                        image: AssetImage("assets/images/note.png"),
                       ),
                     ),
                   ),
