@@ -1,11 +1,11 @@
 import 'dart:convert';
-import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'package:project_manager/modules/home_page_doc/home_page_doc.dart';
 import 'package:project_manager/shared/component/component.dart';
 import 'package:http/http.dart' as http;
 import '../shared/component/constant.dart';
 
+// ignore: must_be_immutable
 class ProjectInfo extends StatefulWidget {
   String stdName1;
   String stdName2;
@@ -22,6 +22,13 @@ class ProjectInfo extends StatefulWidget {
   String timeLine2;
   String docname;
   String docid;
+  String week1;
+  String task1;
+  String week2;
+  String task2;
+  String week3;
+  String task3;
+  String note;
   ProjectInfo({
     super.key,
     required this.stdName1,
@@ -39,9 +46,17 @@ class ProjectInfo extends StatefulWidget {
     required this.timeLine2,
     required this.docname,
     required this.docid,
+    required this.note,
+    required this.week1,
+    required this.task1,
+    required this.week2,
+    required this.task2,
+    required this.week3,
+    required this.task3,
   });
 
   @override
+  // ignore: no_logic_in_create_state
   State<ProjectInfo> createState() => _ProjectInfoState(
         studentName1: stdName1,
         studentName2: stdName2,
@@ -58,6 +73,13 @@ class ProjectInfo extends StatefulWidget {
         timeLine2: timeLine2,
         docid: docid,
         docname: docname,
+        note: note,
+        week1: week1,
+        week2: week2,
+        week3: week3,
+        task1: task1,
+        task2: task2,
+        task3: task3,
       );
 }
 
@@ -77,6 +99,13 @@ class _ProjectInfoState extends State<ProjectInfo> {
   String timeLine2;
   String docid;
   String docname;
+  String week1;
+  String task1;
+  String week2;
+  String task2;
+  String week3;
+  String task3;
+  String note;
   _ProjectInfoState({
     required this.studentName1,
     required this.studentName2,
@@ -93,6 +122,13 @@ class _ProjectInfoState extends State<ProjectInfo> {
     required this.timeLine2,
     required this.docid,
     required this.docname,
+    required this.note,
+    required this.week1,
+    required this.task1,
+    required this.week2,
+    required this.task2,
+    required this.week3,
+    required this.task3,
   });
   TextEditingController noteControler = TextEditingController();
   Future changeState(stdID1) async {
@@ -178,9 +214,7 @@ class _ProjectInfoState extends State<ProjectInfo> {
                   )
                 ],
               ),
-              const SizedBox(
-                height: 20.0,
-              ),
+              myDivider(),
               Row(
                 children: [
                   Container(
@@ -227,9 +261,7 @@ class _ProjectInfoState extends State<ProjectInfo> {
                   )
                 ],
               ),
-              const SizedBox(
-                height: 20.0,
-              ),
+              myDivider(),
               Row(
                 children: [
                   Container(
@@ -276,9 +308,7 @@ class _ProjectInfoState extends State<ProjectInfo> {
                   )
                 ],
               ),
-              const SizedBox(
-                height: 20.0,
-              ),
+              myDivider(),
               Row(
                 children: [
                   Container(
@@ -325,9 +355,7 @@ class _ProjectInfoState extends State<ProjectInfo> {
                   )
                 ],
               ),
-              const SizedBox(
-                height: 20.0,
-              ),
+              myDivider(),
               Row(
                 children: [
                   Container(
@@ -374,9 +402,7 @@ class _ProjectInfoState extends State<ProjectInfo> {
                   ),
                 ],
               ),
-              const SizedBox(
-                height: 20.0,
-              ),
+              myDivider(),
               Row(
                 children: [
                   Container(
@@ -410,9 +436,7 @@ class _ProjectInfoState extends State<ProjectInfo> {
                   ),
                 ],
               ),
-              const SizedBox(
-                height: 20.0,
-              ),
+              myDivider(),
               Row(
                 children: [
                   Container(
@@ -454,9 +478,7 @@ class _ProjectInfoState extends State<ProjectInfo> {
                   ),
                 ],
               ),
-              const SizedBox(
-                height: 20.0,
-              ),
+              myDivider(),
               Row(
                 children: [
                   Container(
@@ -498,9 +520,7 @@ class _ProjectInfoState extends State<ProjectInfo> {
                   ),
                 ],
               ),
-              const SizedBox(
-                height: 20.0,
-              ),
+              myDivider(),
               Row(
                 children: [
                   Container(
@@ -560,6 +580,241 @@ class _ProjectInfoState extends State<ProjectInfo> {
                   )
                 ],
               ),
+              myDivider(),
+              Row(
+                children: [
+                  Container(
+                    width: 80.0,
+                    height: 80.0,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20.0),
+                      image: const DecorationImage(
+                        image: AssetImage("assets/images/week.png"),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 20.0,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        week1,
+                        style: const TextStyle(
+                          fontSize: 15.0,
+                          color: mainColor,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 10.0,
+                      ),
+                    ],
+                  )
+                ],
+              ),
+              Row(
+                children: [
+                  Container(
+                    width: 80.0,
+                    height: 80.0,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20.0),
+                      image: const DecorationImage(
+                        image: AssetImage("assets/images/task.png"),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 20.0,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        task1,
+                        style: const TextStyle(
+                          fontSize: 15.0,
+                          color: mainColor,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 10.0,
+                      ),
+                    ],
+                  )
+                ],
+              ),
+              myDivider(),
+              Row(
+                children: [
+                  Container(
+                    width: 80.0,
+                    height: 80.0,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20.0),
+                      image: const DecorationImage(
+                        image: AssetImage("assets/images/week.png"),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 20.0,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        week2,
+                        style: const TextStyle(
+                          fontSize: 15.0,
+                          color: mainColor,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 10.0,
+                      ),
+                    ],
+                  )
+                ],
+              ),
+              Row(
+                children: [
+                  Container(
+                    width: 80.0,
+                    height: 80.0,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20.0),
+                      image: const DecorationImage(
+                        image: AssetImage("assets/images/task.png"),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 20.0,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        task2,
+                        style: const TextStyle(
+                          fontSize: 15.0,
+                          color: mainColor,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 10.0,
+                      ),
+                    ],
+                  )
+                ],
+              ),
+              myDivider(),
+              Row(
+                children: [
+                  Container(
+                    width: 80.0,
+                    height: 80.0,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20.0),
+                      image: const DecorationImage(
+                        image: AssetImage("assets/images/week.png"),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 20.0,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        week3,
+                        style: const TextStyle(
+                          fontSize: 15.0,
+                          color: mainColor,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 10.0,
+                      ),
+                    ],
+                  )
+                ],
+              ),
+              Row(
+                children: [
+                  Container(
+                    width: 80.0,
+                    height: 80.0,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20.0),
+                      image: const DecorationImage(
+                        image: AssetImage("assets/images/task.png"),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 20.0,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        task3,
+                        style: const TextStyle(
+                          fontSize: 15.0,
+                          color: mainColor,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 10.0,
+                      ),
+                    ],
+                  )
+                ],
+              ),
+              myDivider(),
+              Row(
+                children: [
+                  Container(
+                    width: 80.0,
+                    height: 80.0,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20.0),
+                      image: const DecorationImage(
+                        image: AssetImage("assets/images/note.png"),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 20.0,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        note,
+                        style: const TextStyle(
+                          fontSize: 15.0,
+                          color: mainColor,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 10.0,
+                      ),
+                    ],
+                  )
+                ],
+              ),
               const SizedBox(height: 50.0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -568,7 +823,7 @@ class _ProjectInfoState extends State<ProjectInfo> {
                     text: "Approved",
                     function: () {
                       changeState(stdID1);
-                      navigateTo(context, HomePageDoc());
+                      navigateTo(context, const HomePageDoc());
                     },
                     radius: 40,
                     width: 150,
