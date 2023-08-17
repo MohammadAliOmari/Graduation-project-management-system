@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:project_manager/modules/all_request_page/all_request_page.dart';
 import 'package:project_manager/modules/all_users_page/all_users_page.dart';
 import 'package:project_manager/modules/home_page_admin/home_page_admin.dart';
-import 'package:project_manager/modules/login_screens/mainLogin.dart';
-import 'package:project_manager/shared/component/component.dart';
+import 'package:project_manager/modules/login_screens/main_login.dart';
 import 'package:project_manager/shared/component/constant.dart';
-import 'package:project_manager/shared/sharedPreferences/generalSharedPreferences.dart';
+import 'package:project_manager/shared/sharedPreferences/general_shared_preferences.dart';
 
 class ProjectManagerLayoutAdmin extends StatefulWidget {
   const ProjectManagerLayoutAdmin({super.key});
@@ -58,7 +54,7 @@ class _ProjectManagerLayoutAdminState extends State<ProjectManagerLayoutAdmin> {
                         ),
                         TextButton(
                           onPressed: () async {
-                            await General.remove(ConsValues.university_id);
+                            await General.remove(ConsValues.universityId);
                             // ignore: use_build_context_synchronously
                             Navigator.pop(context);
                             // ignore: use_build_context_synchronously
@@ -66,7 +62,7 @@ class _ProjectManagerLayoutAdminState extends State<ProjectManagerLayoutAdmin> {
                               context,
                               MaterialPageRoute(
                                 builder: (context) {
-                                  return const mainLogin();
+                                  return const MainLogin();
                                 },
                               ),
                             );
@@ -77,7 +73,6 @@ class _ProjectManagerLayoutAdminState extends State<ProjectManagerLayoutAdmin> {
                     );
                   },
                 );
-
               },
               icon: const Icon(
                 Icons.logout,

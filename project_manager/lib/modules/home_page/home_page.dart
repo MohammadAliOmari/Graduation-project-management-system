@@ -1,14 +1,10 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
-import 'package:project_manager/layout/project_manager_layout.dart';
 import 'package:project_manager/model/users_model.dart';
-import 'package:project_manager/modules/request_page/requst_page.dart';
+
 import 'package:project_manager/shared/component/constant.dart';
 
-import '../../provider/studentHomePage_provider.dart';
-import '../../shared/component/component.dart';
-import '../../shared/sharedPreferences/generalSharedPreferences.dart';
+import '../../provider/student_home_page_provider.dart';
+import '../../shared/sharedPreferences/general_shared_preferences.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -22,36 +18,34 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-     get();
+    get();
   }
 
   getInfo() async {
-    studentModel = await userProvider().getinfo(ConsValues.university_id).then((value) {setState(() {
-      
+    studentModel =
+        await UserProvider().getinfo(ConsValues.universityId).then((value) {
+      setState(() {});
+      return value;
     });
-            return value;
-
-      } );
     setState(() {
       studentModel;
     });
   }
 
   get() async {
-  ConsValues.name=await  General.getPrefString("name", "").then((value) {
-    setState(() {
-      });
-    return value;
-      
-    });
-
- ConsValues.university_id= await  General.getPrefString("university_id", "").then((value) {
+    ConsValues.name = await General.getPrefString("name", "").then((value) {
+      setState(() {});
       return value;
     });
-    setState(() {
-      });
+
+    ConsValues.universityId =
+        await General.getPrefString("university_id", "").then((value) {
+      return value;
+    });
+    setState(() {});
     await getInfo();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -90,18 +84,18 @@ class _HomePageState extends State<HomePage> {
                                 children: [
                                   Text(
                                     studentModel.users.first.name,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       color: Colors.white,
                                       fontSize: 18.0,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 20.0,
                                   ),
                                   Text(
                                     studentModel.users.first.universityId,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       color: Colors.white,
                                       fontSize: 18.0,
                                       fontWeight: FontWeight.bold,

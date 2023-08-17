@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:project_manager/shared/component/constant.dart';
 
 import '../login_screens/dr_login.dart';
 import '../login_screens/student_login.dart';
@@ -81,7 +80,7 @@ class _FirstScreenState extends State<FirstScreen> {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5.0),
                             color: isStudent
-                                ? Color.fromARGB(123, 135, 135, 134)
+                                ? const Color.fromARGB(123, 135, 135, 134)
                                 : null,
                           ),
                           child: const Image(
@@ -113,7 +112,7 @@ class _FirstScreenState extends State<FirstScreen> {
                             borderRadius: BorderRadius.circular(5.0),
                             color: isStudent
                                 ? null
-                                : Color.fromARGB(123, 135, 135, 134),
+                                : const Color.fromARGB(123, 135, 135, 134),
                           ),
                           child: const Image(
                             image: AssetImage("assets/images/teacher-logo.png"),

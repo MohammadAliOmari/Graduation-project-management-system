@@ -49,6 +49,7 @@ class User {
   String task3;
   String doctorName;
   String note;
+  String time;
 
   User({
     required this.name,
@@ -74,6 +75,7 @@ class User {
     required this.task3,
     required this.doctorName,
     required this.note,
+    required this.time,
   });
 
   factory User.fromJson(Map<String, dynamic> json) => User(
@@ -100,6 +102,7 @@ class User {
         task3: json["task3"],
         doctorName: json["doctor_name"],
         note: json["note"],
+        time: json["time"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -126,5 +129,6 @@ class User {
         "task3": task3,
         "doctor_name": doctorName,
         "note": note,
+        "time": time,
       };
 }

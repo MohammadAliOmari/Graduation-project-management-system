@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:project_manager/modules/add_users_pages/add_doctor.dart';
 import 'package:project_manager/modules/add_users_pages/add_student.dart';
 
 import '../../model/users_model.dart';
-import '../../provider/admin_HomePage_provider.dart';
+import '../../provider/admin_home_page_provider.dart';
 import '../../shared/component/component.dart';
 import '../../shared/component/constant.dart';
-import '../../shared/sharedPreferences/generalSharedPreferences.dart';
+import '../../shared/sharedPreferences/general_shared_preferences.dart';
 
 class HomePageAdmin extends StatefulWidget {
   const HomePageAdmin({super.key});
@@ -22,144 +20,145 @@ class _HomePageAdminState extends State<HomePageAdmin> {
   @override
   void initState() {
     super.initState();
-     get();
+    get();
   }
 
   getInfo() async {
-    adminModel = await AdminHomePageProvider().getinfo(ConsValues.university_id).then((value) {setState(() {
-      
+    adminModel = await AdminHomePageProvider()
+        .getinfo(ConsValues.universityId)
+        .then((value) {
+      setState(() {});
+      return value;
     });
-            return value;
-
-      } );
     setState(() {
       adminModel;
     });
   }
 
   get() async {
-  ConsValues.name=await  General.getPrefString("name", "").then((value) {
-    setState(() {
-      });
-    return value;
-      
-    });
-
- ConsValues.university_id= await  General.getPrefString("university_id", "").then((value) {
+    ConsValues.name = await General.getPrefString("name", "").then((value) {
+      setState(() {});
       return value;
     });
-    setState(() {
-      });
+
+    ConsValues.universityId =
+        await General.getPrefString("university_id", "").then((value) {
+      return value;
+    });
+    setState(() {});
     await getInfo();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:adminModel.users.isNotEmpty ?
-       Container(
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/images/def_background.jpg'),
-            // fit: BoxFit.cover,
-            repeat: ImageRepeat.repeat,
-          ),
-        ),
-        child: Column(
-          children: [
-            Container(
-              height: 300,
-              width: 300,
+      body: adminModel.users.isNotEmpty
+          ? Container(
               decoration: const BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage('assets/images/logo-wide.jpg'),
+                  image: AssetImage('assets/images/def_background.jpg'),
+                  // fit: BoxFit.cover,
+                  repeat: ImageRepeat.repeat,
                 ),
               ),
-            ),
-            Center(
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  Container(
+                    height: 300,
+                    width: 300,
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('assets/images/logo-wide.jpg'),
+                      ),
+                    ),
+                  ),
+                  Center(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(20.0),
+                          child: Container(
+                            padding: const EdgeInsets.all(20.0),
+                            decoration: BoxDecoration(
+                                color: mainColor,
+                                borderRadius: BorderRadius.circular(10)),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      adminModel.users.first.name,
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 18.0,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      height: 20.0,
+                                    ),
+                                    Text(
+                                      adminModel.users.first.universityId,
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ],
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                   Padding(
                     padding: const EdgeInsets.all(20.0),
-                    child: Container(
-                      padding: const EdgeInsets.all(20.0),
-                      decoration: BoxDecoration(
-                          color: mainColor,
-                          borderRadius: BorderRadius.circular(10)),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children:  [
-                              Text(
-                                adminModel.users.first.name,
-                                style:const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18.0,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 20.0,
-                              ),
-                              Text(
-                                adminModel.users.first.universityId,
-                                style:const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 16.0,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ],
-                          )
-                        ],
-                      ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        defualtButton(
+                          function: () {
+                            navigateTo(
+                              context,
+                              const AddStudent(),
+                            );
+                          },
+                          text: 'Add std',
+                          radius: 40.0,
+                          width: 150,
+                          backGroundClolor: mainColor,
+                        ),
+                        const SizedBox(
+                          width: 20.0,
+                        ),
+                        defualtButton(
+                          text: 'Add doc',
+                          function: () {
+                            navigateTo(
+                              context,
+                              const AddDoctor(),
+                            );
+                          },
+                          width: 150,
+                          radius: 40.0,
+                          backGroundClolor: mainColor,
+                        ),
+                      ],
                     ),
                   ),
                 ],
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  defualtButton(
-                    function: () {
-                      navigateTo(
-                        context,
-                        const AddStudent(),
-                      );
-                    },
-                    text: 'Add std',
-                    radius: 40.0,
-                    width: 150,
-                    backGroundClolor: mainColor,
-                  ),
-                  const SizedBox(
-                    width: 20.0,
-                  ),
-                  defualtButton(
-                    text: 'Add doc',
-                    function: () {
-                      navigateTo(
-                        context,
-                        const AddDoctor(),
-                      );
-                    },
-                    width: 150,
-                    radius: 40.0,
-                    backGroundClolor: mainColor,
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      )
-      : const Center(child: CircularProgressIndicator()),
+            )
+          : const Center(child: CircularProgressIndicator()),
     );
   }
 }

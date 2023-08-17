@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:project_manager/provider/doctorListprovider.dart';
+import 'package:project_manager/provider/doctor_list_provider.dart';
 import 'package:project_manager/shared/component/constant.dart';
 import 'package:provider/provider.dart';
 
-import 'modules/login_screens/mainLogin.dart';
+import 'modules/login_screens/main_login.dart';
 
 void main() {
   runApp(const MyApp());
@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
           ),
           primarySwatch: maincolor1,
         ),
-        home: const mainLogin(),
+        home: const MainLogin(),
         debugShowCheckedModeBanner: false,
         builder: EasyLoading.init(),
       ),

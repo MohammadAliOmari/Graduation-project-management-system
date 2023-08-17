@@ -49,6 +49,7 @@ class Project {
   String week3;
   String task3;
   String note;
+  String time;
 
   Project({
     required this.idProject,
@@ -75,6 +76,7 @@ class Project {
     required this.week3,
     required this.task3,
     required this.note,
+    required this.time,
   });
 
   factory Project.fromJson(Map<String, dynamic> json) => Project(
@@ -102,6 +104,7 @@ class Project {
         task2: json["task2"],
         task3: json["task3"],
         note: json["note"],
+        time: json["time"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -129,5 +132,6 @@ class Project {
         "task1": task1,
         "task2": task2,
         "task3": task3,
+        "time": time,
       };
 }

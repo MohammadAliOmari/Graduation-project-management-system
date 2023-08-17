@@ -18,7 +18,7 @@ class _AddDoctorState extends State<AddDoctor> {
   adddoc() async {
     EasyLoading.show(status: 'loading...');
     final response = await http.post(
-      Uri.parse("${ConsValues.BASEURL}add_doctor.php"),
+      Uri.parse("${ConsValues.baseUrl}add_doctor.php"),
       body: {
         "university_id": idController.text,
         "name": doctorName.text,
@@ -27,6 +27,7 @@ class _AddDoctorState extends State<AddDoctor> {
     );
 
     EasyLoading.dismiss();
+    if (!mounted) return;
     if (response.statusCode == 200) {
       Navigator.pop(context);
     } else {
@@ -34,7 +35,7 @@ class _AddDoctorState extends State<AddDoctor> {
         context: context,
         builder: (context) {
           return AlertDialog(
-            icon: Icon(Icons.error),
+            icon: const Icon(Icons.error),
             content: const Text("signUp failed email exsist"),
             actions: [
               TextButton(
@@ -208,7 +209,7 @@ class _AddDoctorState extends State<AddDoctor> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => AddMoreDoctors(),
+                              builder: (context) => const AddMoreDoctors(),
                             ));
                       });
                     },

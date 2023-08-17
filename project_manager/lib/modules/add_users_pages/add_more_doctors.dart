@@ -41,7 +41,7 @@ class _AddMoreDoctorsState extends State<AddMoreDoctors> {
   addmoredoc() async {
     EasyLoading.show(status: 'loading...');
     final response = await http.post(
-      Uri.parse("${ConsValues.BASEURL}addDoctors1.php"),
+      Uri.parse("${ConsValues.baseUrl}addDoctors1.php"),
       body: {
         "university_id": idController.text,
         "name": docName.text,
@@ -65,6 +65,7 @@ class _AddMoreDoctorsState extends State<AddMoreDoctors> {
     );
 
     EasyLoading.dismiss();
+    if (!mounted) return;
     if (response.statusCode == 200) {
       Navigator.pop(context);
     } else {
@@ -72,7 +73,7 @@ class _AddMoreDoctorsState extends State<AddMoreDoctors> {
         context: context,
         builder: (context) {
           return AlertDialog(
-            icon: Icon(Icons.error),
+            icon: const Icon(Icons.error),
             content: const Text("signUp failed email exsist"),
             actions: [
               TextButton(

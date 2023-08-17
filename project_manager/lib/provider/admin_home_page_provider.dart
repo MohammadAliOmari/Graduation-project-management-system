@@ -8,14 +8,14 @@ import '../shared/component/constant.dart';
 class AdminHomePageProvider extends ChangeNotifier {
   StudentModel adminProvider = StudentModel.empty();
 
-  Future<StudentModel> getinfo(String university_id) async {
+  Future<StudentModel> getinfo(String universityid) async {
     final response = await http.post(
-        Uri.parse("${ConsValues.BASEURL}admin_HomePage.php"),
-        body: {"university_id": university_id});
+        Uri.parse("${ConsValues.baseUrl}admin_HomePage.php"),
+        body: {"university_id": universityid});
 
     if (response.statusCode == 200) {
       var jsonBody = jsonDecode(response.body);
-      var users = jsonBody["users"];
+      // var users = jsonBody["users"];
       adminProvider = StudentModel.fromJson(jsonBody);
 
       notifyListeners();

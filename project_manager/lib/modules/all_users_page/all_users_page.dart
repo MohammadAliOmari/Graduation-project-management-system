@@ -15,7 +15,7 @@ class AllUsersPage extends StatefulWidget {
 
 class _AllUsersPageState extends State<AllUsersPage> {
   Future getData1() async {
-    var url = "${ConsValues.BASEURL}select_all_student.php";
+    var url = "${ConsValues.baseUrl}select_all_student.php";
     var res = await http.get(Uri.parse(url));
     if (res.statusCode == 200) {
       var red = jsonDecode(res.body);
@@ -26,7 +26,7 @@ class _AllUsersPageState extends State<AllUsersPage> {
   }
 
   Future getData() async {
-    var url = "${ConsValues.BASEURL}select_all_doctor.php";
+    var url = "${ConsValues.baseUrl}select_all_doctor.php";
     var res = await http.get(Uri.parse(url));
     if (res.statusCode == 200) {
       var red = jsonDecode(res.body);

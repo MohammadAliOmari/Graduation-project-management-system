@@ -1,12 +1,6 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 
-import '../../layout/project_manager_layout.dart';
-import '../../layout/project_manager_layout_admin.dart';
 import '../../shared/component/component.dart';
-import 'package:http/http.dart' as http;
-import '../home_page_doc/home_page_doc.dart';
 
 class StudentLogin1 extends StatefulWidget {
   const StudentLogin1({super.key});

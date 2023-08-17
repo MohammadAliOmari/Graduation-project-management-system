@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 
 import 'constant.dart';
 
-
 Widget defualtButton({
   double width = double.infinity,
   double height = 40,
@@ -132,9 +131,9 @@ Widget buildUserItem({
 }) =>
     Row(
       children: [
-        Stack(
+        const Stack(
           alignment: AlignmentDirectional.bottomEnd,
-          children: const [
+          children: [
             CircleAvatar(
               radius: 35.0,
               backgroundImage: AssetImage(
@@ -167,7 +166,7 @@ Widget buildUserItem({
                 children: [
                   Expanded(
                     child: Text(
-                      '$id',
+                      id,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: const TextStyle(
@@ -187,12 +186,13 @@ Widget buildRequestItem({
   required String projectName,
   required String studentName,
   required Color stcolor,
+  required String time,
 }) =>
     Row(
       children: [
-        Stack(
+        const Stack(
           alignment: AlignmentDirectional.bottomEnd,
-          children: const [
+          children: [
             CircleAvatar(
               radius: 35.0,
               backgroundImage: AssetImage(
@@ -228,7 +228,7 @@ Widget buildRequestItem({
                       studentName,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style:const TextStyle(
+                      style: const TextStyle(
                         color: Colors.black,
                       ),
                     ),
@@ -258,10 +258,13 @@ Widget buildRequestItem({
                           padding: EdgeInsets.symmetric(
                         vertical: 5,
                       )),
-                      const Text(
-                        '02:00 pm',
-                        style: TextStyle(
-                          color: Colors.black,
+                      SizedBox(
+                        width: 80,
+                        child: Text(
+                          time,
+                          style: const TextStyle(
+                            color: Colors.black,
+                          ),
                         ),
                       ),
                     ],

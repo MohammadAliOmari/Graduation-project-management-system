@@ -1,13 +1,12 @@
-import 'dart:convert';
-
+import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:project_manager/shared/component/constant.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
-import '../model/doctorList_model.dart';
-import '../provider/doctorListprovider.dart';
+import '../model/doctor_list_model.dart';
+import '../provider/doctor_list_provider.dart';
 import '../shared/component/component.dart';
 
 class ProjectForm extends StatefulWidget {
@@ -37,6 +36,9 @@ class _ProjectFormState extends State<ProjectForm> {
   TextEditingController projectTimeTask2 = TextEditingController();
   TextEditingController projectTimeTask3 = TextEditingController();
   var projectFormKey = GlobalKey<FormState>();
+
+  // var time1 = DateTime.now();
+
   DoctorNameModel? selectedValue;
   String universityId = "";
   String docName = "";
@@ -61,6 +63,7 @@ class _ProjectFormState extends State<ProjectForm> {
 
   @override
   Widget build(BuildContext context) {
+    var time = DateFormat.jms().format(DateTime.now());
     return Scaffold(
       body: GestureDetector(
         onTap: () {
@@ -87,6 +90,7 @@ class _ProjectFormState extends State<ProjectForm> {
                               if (value!.trim().isEmpty) {
                                 return "Name must not be empty!";
                               }
+                              return null;
                             },
                             label: "Student name",
                             hint: "Team leader",
@@ -132,7 +136,9 @@ class _ProjectFormState extends State<ProjectForm> {
                             //STUD name1
                             controller: studentName2,
                             type: TextInputType.name,
-                            validator: (value) {},
+                            validator: (value) {
+                              return null;
+                            },
                             label: "Student name",
                             prefix: Icons.abc,
                           ),
@@ -175,7 +181,9 @@ class _ProjectFormState extends State<ProjectForm> {
                             //STUD name2
                             controller: studentName3,
                             type: TextInputType.name,
-                            validator: (value) {},
+                            validator: (value) {
+                              return null;
+                            },
                             label: "Student name",
                             prefix: Icons.abc,
                           ),
@@ -219,7 +227,9 @@ class _ProjectFormState extends State<ProjectForm> {
                             //STUD name3
                             controller: studentName4,
                             type: TextInputType.name,
-                            validator: (value) {},
+                            validator: (value) {
+                              return null;
+                            },
                             label: "Student name",
                             prefix: Icons.abc,
                           ),
@@ -397,6 +407,7 @@ class _ProjectFormState extends State<ProjectForm> {
                               if (value!.trim().isEmpty) {
                                 return "Project timeLine must not be empty!";
                               }
+                              return null;
                             },
                             label: "From",
                             prefix: Icons.access_time_outlined,
@@ -442,10 +453,11 @@ class _ProjectFormState extends State<ProjectForm> {
                             hint: "week",
                             validator: (value) {
                               if (value!.trim().isEmpty) {
-                                return "Project timeLine must not be empty!";
+                                return "week must not be empty!";
                               }
+                              return null;
                             },
-                            label: "From",
+                            label: "week",
                             prefix: Icons.access_time_outlined,
                           ),
                         ),
@@ -463,11 +475,11 @@ class _ProjectFormState extends State<ProjectForm> {
                             hint: "Task",
                             validator: (value) {
                               if (value!.trim().isEmpty) {
-                                return "project timeLine must not be empty !";
+                                return "task must not be empty !";
                               }
                               return null;
                             },
-                            label: "To",
+                            label: "Task",
                             prefix: Icons.access_time_outlined,
                           ),
                         ),
@@ -489,10 +501,11 @@ class _ProjectFormState extends State<ProjectForm> {
                             hint: "week",
                             validator: (value) {
                               if (value!.trim().isEmpty) {
-                                return "Project timeLine must not be empty!";
+                                return "week must not be empty!";
                               }
+                              return null;
                             },
-                            label: "From",
+                            label: "week",
                             prefix: Icons.access_time_outlined,
                           ),
                         ),
@@ -510,11 +523,11 @@ class _ProjectFormState extends State<ProjectForm> {
                             hint: "Task",
                             validator: (value) {
                               if (value!.trim().isEmpty) {
-                                return "project timeLine must not be empty !";
+                                return "task must not be empty !";
                               }
                               return null;
                             },
-                            label: "To",
+                            label: "Task",
                             prefix: Icons.access_time_outlined,
                           ),
                         ),
@@ -536,10 +549,11 @@ class _ProjectFormState extends State<ProjectForm> {
                             hint: "week",
                             validator: (value) {
                               if (value!.trim().isEmpty) {
-                                return "Project timeLine must not be empty!";
+                                return "week must not be empty!";
                               }
+                              return null;
                             },
-                            label: "From",
+                            label: "week",
                             prefix: Icons.access_time_outlined,
                           ),
                         ),
@@ -557,11 +571,11 @@ class _ProjectFormState extends State<ProjectForm> {
                             hint: "Task",
                             validator: (value) {
                               if (value!.trim().isEmpty) {
-                                return "project timeLine must not be empty !";
+                                return "task must not be empty !";
                               }
                               return null;
                             },
-                            label: "To",
+                            label: "Task",
                             prefix: Icons.access_time_outlined,
                           ),
                         ),
@@ -575,8 +589,11 @@ class _ProjectFormState extends State<ProjectForm> {
                     radius: 40.0,
                     text: "Submit",
                     function: () {
+                      setState(() {
+                        time;
+                      });
                       if (projectFormKey.currentState!.validate()) {
-                        insert_info();
+                        insertinfo();
                       }
                     },
                   )
@@ -595,10 +612,11 @@ class _ProjectFormState extends State<ProjectForm> {
   //   Provider.of<doctor_prov>(context, listen: false).clearList();
   // }
 
-  insert_info() async {
+  void insertinfo() async {
+    String time = DateFormat('h:m a d/MM/yyyy').format(DateTime.now());
     EasyLoading.show(status: 'loading...');
     final response = await http.post(
-      Uri.parse("${ConsValues.BASEURL}insert_form.php"),
+      Uri.parse("${ConsValues.baseUrl}insert_form.php"),
       body: {
         "student_name": studentName1.text,
         "university_id": studentId1.text,
@@ -621,22 +639,25 @@ class _ProjectFormState extends State<ProjectForm> {
         "task2": projectTimeTask2.text,
         "week3": projectTimeWeek3.text,
         "task3": projectTimeTask3.text,
+        "time": time.toString(),
       },
     );
     EasyLoading.dismiss();
+    if (!mounted) return;
     if (response.statusCode == 200) {
       showDialog(
         context: context,
         builder: (context) {
           return AlertDialog(
-            icon: Icon(Icons.check),
-            content: Text("Done"),
+            icon: const Icon(Icons.check),
+            content:
+                const SizedBox(height: 30, child: Center(child: Text("Done"))),
             actions: [
               TextButton(
                 onPressed: () {
-                  Navigator.pop(context);
+                  Navigator.of(context).pop();
                 },
-                child: Text("OK"),
+                child: const Text("OK"),
               ),
             ],
           );
@@ -647,7 +668,7 @@ class _ProjectFormState extends State<ProjectForm> {
         context: context,
         builder: (context) {
           return AlertDialog(
-            icon: Icon(Icons.error),
+            icon: const Icon(Icons.error),
             content: const Text("The insert information is not sucess"),
             actions: [
               TextButton(

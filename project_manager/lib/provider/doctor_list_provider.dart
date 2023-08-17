@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:project_manager/model/doctorList_model.dart';
+import 'package:project_manager/model/doctor_list_model.dart';
 import 'package:project_manager/shared/component/constant.dart';
 
 class DoctorProvider extends ChangeNotifier {
@@ -10,19 +10,19 @@ class DoctorProvider extends ChangeNotifier {
   getdoctorname() async {
     clearList();
     final response =
-        await http.post(Uri.parse("${ConsValues.BASEURL}doctorList.php"));
+        await http.post(Uri.parse("${ConsValues.baseUrl}doctorList.php"));
     if (response.statusCode == 200) {
       var jsonbody = jsonDecode(response.body);
-      List names_doctor = jsonbody["Users"];
-      names_doctor.forEach((element) {
+      List namesdoctor = jsonbody["Users"];
+      for (var element in namesdoctor) {
         listDoctorName.add(DoctorNameModel(
             docName: element['name'], docID: element['nameuniversity_id']));
-      });
+      }
     }
     notifyListeners();
-  
-}
+  }
 
-void clearList() {
-  listDoctorName.clear();}
+  void clearList() {
+    listDoctorName.clear();
+  }
 }

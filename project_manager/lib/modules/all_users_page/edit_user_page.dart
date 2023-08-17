@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:project_manager/layout/project_manager_layout_admin.dart';
 import 'package:project_manager/shared/component/component.dart';
 import 'package:http/http.dart' as http;
@@ -22,7 +19,7 @@ TextEditingController id = TextEditingController();
 
 class _EditUsersState extends State<EditUsers> {
   Future editData() async {
-    var url = "${ConsValues.BASEURL}updateuser.php";
+    var url = "${ConsValues.baseUrl}updateuser.php";
 
     await http.post(Uri.parse(url), body: {
       'university_id': id.text,
@@ -60,7 +57,9 @@ class _EditUsersState extends State<EditUsers> {
             //STUD ID1
             controller: id,
             type: TextInputType.text,
-            validator: (value) {},
+            validator: (value) {
+              return null;
+            },
             label: "ID",
             prefix: Icons.numbers,
           ),
@@ -71,29 +70,33 @@ class _EditUsersState extends State<EditUsers> {
             //STUD ID1
             controller: name,
             type: TextInputType.text,
-            validator: (value) {},
+            validator: (value) {
+              return null;
+            },
             label: "Name",
             prefix: Icons.abc_outlined,
           ),
-          SizedBox(
+          const SizedBox(
             height: 15.0,
           ),
           projectFormTextForm(
             //STUD ID1
             controller: pass,
             type: TextInputType.text,
-            validator: (value) {},
+            validator: (value) {
+              return null;
+            },
             label: "Password",
             prefix: Icons.lock,
           ),
-          SizedBox(
+          const SizedBox(
             height: 15.0,
           ),
           defualtButton(
             text: 'Edit',
             function: () {
               editData();
-              navigateTo(context, ProjectManagerLayoutAdmin());
+              navigateTo(context, const ProjectManagerLayoutAdmin());
             },
             radius: 40,
           ),

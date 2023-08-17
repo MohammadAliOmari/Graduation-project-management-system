@@ -3,22 +3,21 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:project_manager/layout/project_manager_layout.dart';
 import 'package:project_manager/layout/project_manager_layout_admin.dart';
-import 'package:project_manager/modules/home_page_admin/home_page_admin.dart';
 import 'package:project_manager/shared/component/constant.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:http/http.dart' as http;
-import 'package:project_manager/shared/sharedPreferences/generalSharedPreferences.dart';
+import 'package:project_manager/shared/sharedPreferences/general_shared_preferences.dart';
 import '../../shared/component/component.dart';
 import '../home_page_doc/home_page_doc.dart';
 
-class mainLogin extends StatefulWidget {
-  const mainLogin({super.key});
+class MainLogin extends StatefulWidget {
+  const MainLogin({super.key});
 
   @override
-  State<mainLogin> createState() => _mainLoginState();
+  State<MainLogin> createState() => _MainLoginState();
 }
 
-class _mainLoginState extends State<mainLogin> {
+class _MainLoginState extends State<MainLogin> {
   var emailControllor = TextEditingController();
   var passwordControllor = TextEditingController();
   var fkey = GlobalKey<FormState>();
@@ -113,49 +112,57 @@ class _mainLoginState extends State<mainLogin> {
       ),
     );
   }
-  login() async {
+
+  Future login() async {
     EasyLoading.show(status: 'loading...');
     final response = await http.post(
-      Uri.parse("${ConsValues.BASEURL}logIn.php"),
+      Uri.parse("${ConsValues.baseUrl}logIn.php"),
       body: {
         "university_id": emailControllor.text,
         "pass": passwordControllor.text
+      },
+      headers: {
+        "Accept": "application/json",
+        "Access-Control-Allow-Origin": "Access-Control-Allow-Origin, Accept"
       },
     );
     EasyLoading.dismiss();
     if (response.statusCode == 200) {
       var jsonBody = jsonDecode(response.body);
       if (jsonBody['result']) {
-      await  General.savePrefString("university_id", jsonBody['university_id']);
-       await General.savePrefString("pass", jsonBody['pass']);
+        await General.savePrefString(
+            "university_id", jsonBody['university_id']);
+        await General.savePrefString("pass", jsonBody['pass']);
         // General.savePrefString(ConsValues.name, jsonBody['name']);
+        if (!mounted) return;
         if (jsonBody['id_user_type'] == "1") {
-          navigateTo(context, ProjectManagerLayoutAdmin());
+          navigateTo(context, const ProjectManagerLayoutAdmin());
         } else if (jsonBody['id_user_type'] == "2") {
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
               builder: (context) {
-                return HomePageDoc();
+                return const HomePageDoc();
               },
             ),
           );
         } else if (jsonBody['id_user_type'] == "3") {
-          navigateTo(context, ProjectManagerLayout());
+          navigateTo(context, const ProjectManagerLayout());
         }
       } else {
+        if (!mounted) return;
         showDialog(
           context: context,
           builder: (context) {
             return AlertDialog(
-              icon: Icon(Icons.error),
+              icon: const Icon(Icons.error),
               content: Text(jsonBody['msg']),
               actions: [
                 TextButton(
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  child: Text("OK"),
+                  child: const Text("OK"),
                 ),
               ],
             );

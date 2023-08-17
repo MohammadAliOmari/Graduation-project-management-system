@@ -40,7 +40,7 @@ class _AddMoreStudentsState extends State<AddMoreStudents> {
   addmorestd() async {
     EasyLoading.show(status: 'loading...');
     final response = await http.post(
-      Uri.parse("${ConsValues.BASEURL}addMultiStd.php"),
+      Uri.parse("${ConsValues.baseUrl}addMultiStd.php"),
       body: {
         "university_id": idController.text,
         "name": studentName.text,
@@ -64,6 +64,7 @@ class _AddMoreStudentsState extends State<AddMoreStudents> {
     );
 
     EasyLoading.dismiss();
+    if (!mounted) return;
     if (response.statusCode == 200) {
       Navigator.pop(context);
     } else {
@@ -71,7 +72,7 @@ class _AddMoreStudentsState extends State<AddMoreStudents> {
         context: context,
         builder: (context) {
           return AlertDialog(
-            icon: Icon(Icons.error),
+            icon: const Icon(Icons.error),
             content: const Text("signUp failed email exsist"),
             actions: [
               TextButton(

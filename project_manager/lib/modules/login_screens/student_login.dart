@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:project_manager/layout/project_manager_layout.dart';
-import 'package:project_manager/modules/home_page/home_page.dart';
 import 'package:project_manager/modules/login_screens/rigster.dart';
 import 'package:project_manager/shared/component/constant.dart';
 
@@ -117,7 +116,7 @@ class _StudentLoginState extends State<StudentLogin> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Text(
-                        "Don\'t have an account?",
+                        "Don't have an account?",
                         style: TextStyle(),
                       ),
                       const SizedBox(width: 10.0),

@@ -1,35 +1,33 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:project_manager/modules/home_page_doc/home_page_doc.dart';
 import 'package:project_manager/shared/component/component.dart';
 import 'package:http/http.dart' as http;
 import '../shared/component/constant.dart';
 
-// ignore: must_be_immutable
 class ProjectInfo extends StatefulWidget {
-  String stdName1;
-  String stdName2;
-  String stdName3;
-  String stdName4;
-  String stdID1;
-  String stdID2;
-  String stdID3;
-  String stdID4;
-  String projectName;
-  String description;
-  String goals;
-  String timeLine1;
-  String timeLine2;
-  String docname;
-  String docid;
-  String week1;
-  String task1;
-  String week2;
-  String task2;
-  String week3;
-  String task3;
-  String note;
-  ProjectInfo({
+  final String stdName1;
+  final String stdName2;
+  final String stdName3;
+  final String stdName4;
+  final String stdID1;
+  final String stdID2;
+  final String stdID3;
+  final String stdID4;
+  final String projectName;
+  final String description;
+  final String goals;
+  final String timeLine1;
+  final String timeLine2;
+  final String docname;
+  final String docid;
+  final String week1;
+  final String task1;
+  final String week2;
+  final String task2;
+  final String week3;
+  final String task3;
+  final String note;
+  const ProjectInfo({
     super.key,
     required this.stdName1,
     required this.stdName2,
@@ -56,94 +54,93 @@ class ProjectInfo extends StatefulWidget {
   });
 
   @override
-  // ignore: no_logic_in_create_state
   State<ProjectInfo> createState() => _ProjectInfoState(
-        studentName1: stdName1,
-        studentName2: stdName2,
-        studentName3: stdName3,
-        studentName4: stdName4,
-        stdID1: stdID1,
-        stdID2: stdID2,
-        stdID3: stdID3,
-        stdID4: stdID4,
-        projectName: projectName,
-        description: description,
-        goals: goals,
-        timeLine1: timeLine1,
-        timeLine2: timeLine2,
-        docid: docid,
-        docname: docname,
-        note: note,
-        week1: week1,
-        week2: week2,
-        week3: week3,
-        task1: task1,
-        task2: task2,
-        task3: task3,
+      // studentName1: stdName1,
+      // studentName2: stdName2,
+      // studentName3: stdName3,
+      // studentName4: stdName4,
+      // stdID1: stdID1,
+      // stdID2: stdID2,
+      // stdID3: stdID3,
+      // stdID4: stdID4,
+      // projectName: projectName,
+      // description: description,
+      // goals: goals,
+      // timeLine1: timeLine1,
+      // timeLine2: timeLine2,
+      // docid: docid,
+      // docname: docname,
+      // note: note,
+      // week1: week1,
+      // week2: week2,
+      // week3: week3,
+      // task1: task1,
+      // task2: task2,
+      // task3: task3,
       );
 }
 
 class _ProjectInfoState extends State<ProjectInfo> {
-  String studentName1;
-  String studentName2;
-  String studentName3;
-  String studentName4;
-  String stdID1;
-  String stdID2;
-  String stdID3;
-  String stdID4;
-  String projectName;
-  String description;
-  String goals;
-  String timeLine1;
-  String timeLine2;
-  String docid;
-  String docname;
-  String week1;
-  String task1;
-  String week2;
-  String task2;
-  String week3;
-  String task3;
-  String note;
-  _ProjectInfoState({
-    required this.studentName1,
-    required this.studentName2,
-    required this.studentName3,
-    required this.studentName4,
-    required this.stdID1,
-    required this.stdID2,
-    required this.stdID3,
-    required this.stdID4,
-    required this.projectName,
-    required this.description,
-    required this.goals,
-    required this.timeLine1,
-    required this.timeLine2,
-    required this.docid,
-    required this.docname,
-    required this.note,
-    required this.week1,
-    required this.task1,
-    required this.week2,
-    required this.task2,
-    required this.week3,
-    required this.task3,
-  });
+  // String studentName1;
+  // String studentName2;
+  // String studentName3;
+  // String studentName4;
+  // String stdID1;
+  // String stdID2;
+  // String stdID3;
+  // String stdID4;
+  // String projectName;
+  // String description;
+  // String goals;
+  // String timeLine1;
+  // String timeLine2;
+  // String docid;
+  // String docname;
+  // String week1;
+  // String task1;
+  // String week2;
+  // String task2;
+  // String week3;
+  // String task3;
+  // String note;
+  // _ProjectInfoState({
+  //   required this.studentName1,
+  //   required this.studentName2,
+  //   required this.studentName3,
+  //   required this.studentName4,
+  //   required this.stdID1,
+  //   required this.stdID2,
+  //   required this.stdID3,
+  //   required this.stdID4,
+  //   required this.projectName,
+  //   required this.description,
+  //   required this.goals,
+  //   required this.timeLine1,
+  //   required this.timeLine2,
+  //   required this.docid,
+  //   required this.docname,
+  //   required this.note,
+  //   required this.week1,
+  //   required this.task1,
+  //   required this.week2,
+  //   required this.task2,
+  //   required this.week3,
+  //   required this.task3,
+
   TextEditingController noteControler = TextEditingController();
   Future changeState(stdID1) async {
-    var url = "${ConsValues.BASEURL}change_state_approved.php";
+    var url = "${ConsValues.baseUrl}change_state_approved.php";
     var res = await http.post(Uri.parse(url), body: {'university_id': stdID1});
     if (res.statusCode == 200) {
-      var jsonBody = jsonDecode(res.body);
+      // var jsonBody = jsonDecode(res.body);
     }
   }
 
   Future changeStateRejected(stdID1) async {
-    var url = "${ConsValues.BASEURL}change_state_rejected.php";
+    var url = "${ConsValues.baseUrl}change_state_rejected.php";
     var res = await http.post(Uri.parse(url), body: {'university_id': stdID1});
     if (res.statusCode == 200) {
-      var jsonBody = jsonDecode(res.body);
+      // var jsonBody = jsonDecode(res.body);
     }
   }
 
@@ -184,7 +181,7 @@ class _ProjectInfoState extends State<ProjectInfo> {
                     width: 20.0,
                   ),
                   Expanded(
-                    child: Container(
+                    child: SizedBox(
                       height: 80.0,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -192,7 +189,7 @@ class _ProjectInfoState extends State<ProjectInfo> {
                         children: [
                           Expanded(
                             child: Text(
-                              studentName1,
+                              widget.stdName1,
                               style: const TextStyle(
                                 fontSize: 17.0,
                                 fontWeight: FontWeight.bold,
@@ -202,7 +199,7 @@ class _ProjectInfoState extends State<ProjectInfo> {
                             ),
                           ),
                           Text(
-                            stdID1,
+                            widget.stdID1,
                             style: const TextStyle(
                               fontSize: 15.0,
                               color: mainColor,
@@ -231,7 +228,7 @@ class _ProjectInfoState extends State<ProjectInfo> {
                     width: 20.0,
                   ),
                   Expanded(
-                    child: Container(
+                    child: SizedBox(
                       height: 80.0,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -239,7 +236,7 @@ class _ProjectInfoState extends State<ProjectInfo> {
                         children: [
                           Expanded(
                             child: Text(
-                              studentName2,
+                              widget.stdName2,
                               style: const TextStyle(
                                 fontSize: 17.0,
                                 fontWeight: FontWeight.bold,
@@ -249,7 +246,7 @@ class _ProjectInfoState extends State<ProjectInfo> {
                             ),
                           ),
                           Text(
-                            stdID2,
+                            widget.stdID2,
                             style: const TextStyle(
                               fontSize: 15.0,
                               color: mainColor,
@@ -278,7 +275,7 @@ class _ProjectInfoState extends State<ProjectInfo> {
                     width: 20.0,
                   ),
                   Expanded(
-                    child: Container(
+                    child: SizedBox(
                       height: 80.0,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -286,7 +283,7 @@ class _ProjectInfoState extends State<ProjectInfo> {
                         children: [
                           Expanded(
                             child: Text(
-                              studentName3,
+                              widget.stdName3,
                               style: const TextStyle(
                                 fontSize: 17.0,
                                 fontWeight: FontWeight.bold,
@@ -296,7 +293,7 @@ class _ProjectInfoState extends State<ProjectInfo> {
                             ),
                           ),
                           Text(
-                            stdID3,
+                            widget.stdID3,
                             style: const TextStyle(
                               fontSize: 15.0,
                               color: mainColor,
@@ -325,7 +322,7 @@ class _ProjectInfoState extends State<ProjectInfo> {
                     width: 20.0,
                   ),
                   Expanded(
-                    child: Container(
+                    child: SizedBox(
                       height: 80.0,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -333,7 +330,7 @@ class _ProjectInfoState extends State<ProjectInfo> {
                         children: [
                           Expanded(
                             child: Text(
-                              studentName4,
+                              widget.stdName4,
                               style: const TextStyle(
                                 fontSize: 17.0,
                                 fontWeight: FontWeight.bold,
@@ -343,7 +340,7 @@ class _ProjectInfoState extends State<ProjectInfo> {
                             ),
                           ),
                           Text(
-                            stdID4,
+                            widget.stdID4,
                             style: const TextStyle(
                               fontSize: 15.0,
                               color: mainColor,
@@ -372,7 +369,7 @@ class _ProjectInfoState extends State<ProjectInfo> {
                     width: 20.0,
                   ),
                   Expanded(
-                    child: Container(
+                    child: SizedBox(
                       height: 80.0,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -380,8 +377,8 @@ class _ProjectInfoState extends State<ProjectInfo> {
                         children: [
                           Expanded(
                             child: Text(
-                              docname,
-                              style: TextStyle(
+                              widget.docname,
+                              style: const TextStyle(
                                 fontSize: 17.0,
                                 fontWeight: FontWeight.bold,
                                 color: mainColor,
@@ -390,8 +387,8 @@ class _ProjectInfoState extends State<ProjectInfo> {
                             ),
                           ),
                           Text(
-                            docid,
-                            style: TextStyle(
+                            widget.docid,
+                            style: const TextStyle(
                               fontSize: 15.0,
                               color: mainColor,
                             ),
@@ -424,7 +421,7 @@ class _ProjectInfoState extends State<ProjectInfo> {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
-                        projectName,
+                        widget.projectName,
                         style: const TextStyle(
                           fontSize: 17.0,
                           fontWeight: FontWeight.bold,
@@ -453,7 +450,7 @@ class _ProjectInfoState extends State<ProjectInfo> {
                     width: 20.0,
                   ),
                   Expanded(
-                    child: Container(
+                    child: SizedBox(
                       height: 80,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -462,7 +459,7 @@ class _ProjectInfoState extends State<ProjectInfo> {
                         children: [
                           Expanded(
                             child: Text(
-                              description,
+                              widget.description,
                               style: const TextStyle(
                                 fontSize: 17.0,
                                 fontWeight: FontWeight.bold,
@@ -495,7 +492,7 @@ class _ProjectInfoState extends State<ProjectInfo> {
                     width: 20.0,
                   ),
                   Expanded(
-                    child: Container(
+                    child: SizedBox(
                       height: 80,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -504,7 +501,7 @@ class _ProjectInfoState extends State<ProjectInfo> {
                         children: [
                           Expanded(
                             child: Text(
-                              goals,
+                              widget.goals,
                               style: const TextStyle(
                                 fontSize: 17.0,
                                 fontWeight: FontWeight.bold,
@@ -550,7 +547,7 @@ class _ProjectInfoState extends State<ProjectInfo> {
                         maxLines: 2,
                       ),
                       Text(
-                        timeLine1,
+                        widget.timeLine1,
                         style: const TextStyle(
                           fontSize: 15.0,
                           color: mainColor,
@@ -570,7 +567,7 @@ class _ProjectInfoState extends State<ProjectInfo> {
                         width: 15.0,
                       ),
                       Text(
-                        timeLine2,
+                        widget.timeLine2,
                         style: const TextStyle(
                           fontSize: 15.0,
                           color: mainColor,
@@ -601,7 +598,7 @@ class _ProjectInfoState extends State<ProjectInfo> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
-                        week1,
+                        widget.week1,
                         style: const TextStyle(
                           fontSize: 15.0,
                           color: mainColor,
@@ -634,74 +631,7 @@ class _ProjectInfoState extends State<ProjectInfo> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
-                        task1,
-                        style: const TextStyle(
-                          fontSize: 15.0,
-                          color: mainColor,
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 10.0,
-                      ),
-                    ],
-                  )
-                ],
-              ),
-              myDivider(),
-              Row(
-                children: [
-                  Container(
-                    width: 80.0,
-                    height: 80.0,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20.0),
-                      image: const DecorationImage(
-                        image: AssetImage("assets/images/week.png"),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 20.0,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text(
-                        week2,
-                        style: const TextStyle(
-                          fontSize: 15.0,
-                          color: mainColor,
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 10.0,
-                      ),
-                    ],
-                  )
-                ],
-              ),
-              Row(
-                children: [
-                  Container(
-                    width: 80.0,
-                    height: 80.0,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20.0),
-                      image: const DecorationImage(
-                        image: AssetImage("assets/images/task.png"),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 20.0,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text(
-                        task2,
+                        widget.task1,
                         style: const TextStyle(
                           fontSize: 15.0,
                           color: mainColor,
@@ -735,7 +665,7 @@ class _ProjectInfoState extends State<ProjectInfo> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
-                        week3,
+                        widget.week2,
                         style: const TextStyle(
                           fontSize: 15.0,
                           color: mainColor,
@@ -768,7 +698,74 @@ class _ProjectInfoState extends State<ProjectInfo> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
-                        task3,
+                        widget.task2,
+                        style: const TextStyle(
+                          fontSize: 15.0,
+                          color: mainColor,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 10.0,
+                      ),
+                    ],
+                  )
+                ],
+              ),
+              myDivider(),
+              Row(
+                children: [
+                  Container(
+                    width: 80.0,
+                    height: 80.0,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20.0),
+                      image: const DecorationImage(
+                        image: AssetImage("assets/images/week.png"),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 20.0,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        widget.week3,
+                        style: const TextStyle(
+                          fontSize: 15.0,
+                          color: mainColor,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 10.0,
+                      ),
+                    ],
+                  )
+                ],
+              ),
+              Row(
+                children: [
+                  Container(
+                    width: 80.0,
+                    height: 80.0,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20.0),
+                      image: const DecorationImage(
+                        image: AssetImage("assets/images/task.png"),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 20.0,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        widget.task3,
                         style: const TextStyle(
                           fontSize: 15.0,
                           color: mainColor,
@@ -802,7 +799,7 @@ class _ProjectInfoState extends State<ProjectInfo> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
-                        note,
+                        widget.note,
                         style: const TextStyle(
                           fontSize: 15.0,
                           color: mainColor,
@@ -822,7 +819,7 @@ class _ProjectInfoState extends State<ProjectInfo> {
                   defualtButton(
                     text: "Approved",
                     function: () {
-                      changeState(stdID1);
+                      changeState(widget.stdID1);
                       navigateTo(context, const HomePageDoc());
                     },
                     radius: 40,
@@ -832,7 +829,7 @@ class _ProjectInfoState extends State<ProjectInfo> {
                     width: 20.0,
                   ),
                   defualtButton(
-                      text: "Regected",
+                      text: "Rejected",
                       function: () {
                         addNote();
                       },
@@ -849,13 +846,13 @@ class _ProjectInfoState extends State<ProjectInfo> {
   }
 
   Future updateNote(stdID1) async {
-    var url = "${ConsValues.BASEURL}updateNote.php";
+    var url = "${ConsValues.baseUrl}updateNote.php";
     var res = await http.post(Uri.parse(url), body: {
       'university_id': stdID1,
       'note': noteControler.text,
     });
     if (res.statusCode == 200) {
-      var jsonBody = jsonDecode(res.body);
+      // var jsonBody = jsonDecode(res.body);
     }
   }
 
@@ -864,31 +861,33 @@ class _ProjectInfoState extends State<ProjectInfo> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          content: Container(
+          content: SizedBox(
             height: 200,
             width: double.infinity,
             child: Column(
               children: [
                 const Text("Write Note Why You Rejected"),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 defualtTextForm(
                     controller: noteControler,
                     type: TextInputType.text,
-                    validator: (Value) {},
+                    validator: (value) {
+                      return '';
+                    },
                     label: 'Note',
                     prefix: Icons.note_alt_outlined),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 defualtButton(
                     radius: 40,
                     text: 'Send',
                     function: () {
-                      updateNote(stdID1);
-                      changeStateRejected(stdID1);
-                      navigateTo(context, HomePageDoc());
+                      updateNote(widget.stdID1);
+                      changeStateRejected(widget.stdID1);
+                      navigateTo(context, const HomePageDoc());
                     })
               ],
             ),
