@@ -14,7 +14,6 @@ class EditUsers extends StatefulWidget {
 }
 
 TextEditingController name = TextEditingController();
-TextEditingController pass = TextEditingController();
 TextEditingController id = TextEditingController();
 
 class _EditUsersState extends State<EditUsers> {
@@ -24,7 +23,6 @@ class _EditUsersState extends State<EditUsers> {
     await http.post(Uri.parse(url), body: {
       'university_id': id.text,
       'name': name.text,
-      'pass': pass.text,
     });
     setState(() {
       id.text = widget.l1[widget.index]['university_id'];
@@ -46,6 +44,13 @@ class _EditUsersState extends State<EditUsers> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_rounded),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          color: Colors.white,
+        ),
         title: const Text(
           'Edit Users',
         ),
@@ -75,19 +80,6 @@ class _EditUsersState extends State<EditUsers> {
             },
             label: "Name",
             prefix: Icons.abc_outlined,
-          ),
-          const SizedBox(
-            height: 15.0,
-          ),
-          projectFormTextForm(
-            //STUD ID1
-            controller: pass,
-            type: TextInputType.text,
-            validator: (value) {
-              return null;
-            },
-            label: "Password",
-            prefix: Icons.lock,
           ),
           const SizedBox(
             height: 15.0,
