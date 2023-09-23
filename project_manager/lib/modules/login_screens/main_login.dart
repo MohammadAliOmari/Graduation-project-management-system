@@ -42,6 +42,17 @@ class _MainLoginState extends State<MainLogin> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Center(
+                    child: Container(
+                      height: 200,
+                      width: 300,
+                      decoration: const BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('assets/images/logo-wide.jpg'),
+                        ),
+                      ),
+                    ),
+                  ),
                   const Text(
                     "Login",
                     style: TextStyle(

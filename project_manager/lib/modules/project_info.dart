@@ -54,79 +54,10 @@ class ProjectInfo extends StatefulWidget {
   });
 
   @override
-  State<ProjectInfo> createState() => _ProjectInfoState(
-      // studentName1: stdName1,
-      // studentName2: stdName2,
-      // studentName3: stdName3,
-      // studentName4: stdName4,
-      // stdID1: stdID1,
-      // stdID2: stdID2,
-      // stdID3: stdID3,
-      // stdID4: stdID4,
-      // projectName: projectName,
-      // description: description,
-      // goals: goals,
-      // timeLine1: timeLine1,
-      // timeLine2: timeLine2,
-      // docid: docid,
-      // docname: docname,
-      // note: note,
-      // week1: week1,
-      // week2: week2,
-      // week3: week3,
-      // task1: task1,
-      // task2: task2,
-      // task3: task3,
-      );
+  State<ProjectInfo> createState() => _ProjectInfoState();
 }
 
 class _ProjectInfoState extends State<ProjectInfo> {
-  // String studentName1;
-  // String studentName2;
-  // String studentName3;
-  // String studentName4;
-  // String stdID1;
-  // String stdID2;
-  // String stdID3;
-  // String stdID4;
-  // String projectName;
-  // String description;
-  // String goals;
-  // String timeLine1;
-  // String timeLine2;
-  // String docid;
-  // String docname;
-  // String week1;
-  // String task1;
-  // String week2;
-  // String task2;
-  // String week3;
-  // String task3;
-  // String note;
-  // _ProjectInfoState({
-  //   required this.studentName1,
-  //   required this.studentName2,
-  //   required this.studentName3,
-  //   required this.studentName4,
-  //   required this.stdID1,
-  //   required this.stdID2,
-  //   required this.stdID3,
-  //   required this.stdID4,
-  //   required this.projectName,
-  //   required this.description,
-  //   required this.goals,
-  //   required this.timeLine1,
-  //   required this.timeLine2,
-  //   required this.docid,
-  //   required this.docname,
-  //   required this.note,
-  //   required this.week1,
-  //   required this.task1,
-  //   required this.week2,
-  //   required this.task2,
-  //   required this.week3,
-  //   required this.task3,
-
   TextEditingController noteControler = TextEditingController();
   Future changeState(stdID1) async {
     var url = "${ConsValues.baseUrl}change_state_approved.php";

@@ -65,7 +65,9 @@ Widget defualtTextForm({
                   sufix,
                 ))
             : null,
-        border: const OutlineInputBorder(),
+        border: const OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(20.0)),
+        ),
       ),
     );
 

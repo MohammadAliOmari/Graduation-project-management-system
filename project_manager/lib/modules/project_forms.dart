@@ -53,6 +53,27 @@ class _ProjectFormState extends State<ProjectForm> {
   //   });
   //   return "success";
   // }
+  void clearTextFormField() {
+    studentName1.clear();
+    studentName2.clear();
+    studentName3.clear();
+    studentName4.clear();
+    studentId1.clear();
+    studentId2.clear();
+    studentId3.clear();
+    studentId4.clear();
+    projectName.clear();
+    projectDescription.clear();
+    projectGoals.clear();
+    projectTimeFrom.clear();
+    projectTimeWeek1.clear();
+    projectTimeWeek2.clear();
+    projectTimeWeek3.clear();
+    projectTimeTo.clear();
+    projectTimeTask1.clear();
+    projectTimeTask2.clear();
+    projectTimeTask3.clear();
+  }
 
   @override
   void initState() {
@@ -655,6 +676,7 @@ class _ProjectFormState extends State<ProjectForm> {
             actions: [
               TextButton(
                 onPressed: () {
+                  clearTextFormField();
                   Navigator.of(context).pop();
                 },
                 child: const Text("OK"),
