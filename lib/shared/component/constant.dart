@@ -27,7 +27,7 @@ const MaterialColor maincolor1Accent =
 const int _maincolor1AccentValue = 0xFF84FFDB;
 
 class ConsValues {
-  static String baseUrl = "http://ipadress/flutter_final/";
+  static String baseUrl = "http://192.168.1.15/flutter_final/";
   static String universityId = "university_id";
   static String idUserType = "id_user_type";
   static String name = "name";

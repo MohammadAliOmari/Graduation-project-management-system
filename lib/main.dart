@@ -24,6 +24,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
+          useMaterial3: false,
           appBarTheme: const AppBarTheme(
             titleSpacing: 20,
             elevation: 0.0,

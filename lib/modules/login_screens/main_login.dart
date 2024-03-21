@@ -180,6 +180,25 @@ class _MainLoginState extends State<MainLogin> {
           },
         );
       }
+    } else {
+      if (!mounted) return;
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            icon: const Icon(Icons.error),
+            content: const Text('erorr'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Text("OK"),
+              ),
+            ],
+          );
+        },
+      );
     }
   }
 }
