@@ -1,16 +1,12 @@
-# project_manager
+# Graduation project management system
 
-A new Flutter project.
+A new Flutter project with PhP 
 
-## Getting Started
+# Screenshot 
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# Admin Screens
+<img src="https://github.com/MohammadAliOmari/Shop_App/assets/123997624/8eb982df-f842-4918-be4a-48487fd3db04" width="270" height="580"> <img src="https://github.com/MohammadAliOmari/Shop_App/assets/123997624/9e7d65ce-3c76-4674-94f6-7a444df47ca4" width="270" height="580"> <img src="https://github.com/MohammadAliOmari/Shop_App/assets/123997624/0be37d1b-b79b-471b-b7e4-258c0dca86d2" width="270" height="580"> <img src="https://github.com/MohammadAliOmari/Shop_App/assets/123997624/b10b2e62-b1d8-4234-bdbc-920f85a8a30b" width="270" height="580"> <img src="https://github.com/MohammadAliOmari/Shop_App/assets/123997624/1f67e3fb-26e7-4747-a488-45b4502be438" width="270" height="580"> <img src="https://github.com/MohammadAliOmari/Shop_App/assets/123997624/807fff16-1eb6-4a2b-aaee-2700f0656a37" width="270" height="580"> <img src="https://github.com/MohammadAliOmari/Shop_App/assets/123997624/9fdc6a45-401a-4bc5-af82-649b188341f5" width="270" height="580"> <img src="https://github.com/MohammadAliOmari/Shop_App/assets/123997624/58c0daeb-8abb-4d18-9fad-1957a1d2d514" width="270" height="580"> <img src="https://github.com/MohammadAliOmari/Shop_App/assets/123997624/0c1fe7e4-4aef-4196-ab7d-361627728dd2" width="270" height="580"> <img src="https://github.com/MohammadAliOmari/Shop_App/assets/123997624/4bb12584-106e-49c0-b00c-b008dab4efee" width="270" height="580"> <img src="https://github.com/MohammadAliOmari/Shop_App/assets/123997624/d0a5cddc-6d34-4822-a166-bde5ef29d559" width="270" height="580"> <img src="https://github.com/MohammadAliOmari/Shop_App/assets/123997624/4d57ec54-82ab-4834-bb3f-fde54a0ad268" width="270" height="580"> <img src="https://github.com/MohammadAliOmari/Shop_App/assets/123997624/7502c791-80d3-4823-bdd2-13ec83ec9e17" width="270" height="580">
+# Student Screens
+<img src="https://github.com/MohammadAliOmari/Shop_App/assets/123997624/45ab50a9-e7d9-4061-8132-26a793483021" width="270" height="580"> <img src="https://github.com/MohammadAliOmari/Shop_App/assets/123997624/b0237513-4ae1-45d5-8738-4279e065b82d" width="270" height="580"> <img src="https://github.com/MohammadAliOmari/Shop_App/assets/123997624/838848d3-ac4d-421d-910b-b60054074e5e" width="270" height="580"> <img src="https://github.com/MohammadAliOmari/Shop_App/assets/123997624/3c6d06f8-b742-41c9-98c1-1b0a798d81dc" width="270" height="580">
+# Doctor Screens
+<img src="https://github.com/MohammadAliOmari/Shop_App/assets/123997624/6c712f5b-c640-41ee-843d-01d47227b309" width="270" height="580"> <img src="https://github.com/MohammadAliOmari/Shop_App/assets/123997624/62f1f66e-2bce-4d14-9444-9003a30bdb90" width="270" height="580"> <img src="https://github.com/MohammadAliOmari/Shop_App/assets/123997624/4982a5c5-3954-42b0-a1ac-18486de830d1" width="270" height="580"> <img src="https://github.com/MohammadAliOmari/Shop_App/assets/123997624/b287aca0-e2ce-4fd9-9bf6-c50c2c782b04" width="270" height="580">
